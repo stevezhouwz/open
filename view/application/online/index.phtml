@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/videojs.css" type="text/css" />
+    <link rel="stylesheet" href="/css/index/online.css" type="text/css" />
+    <link rel="stylesheet" href="/pop/animate.css" type="text/css" />
+    <link rel="stylesheet" href="/pop/pop.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script type="text/javascript" src="/js/index/video.js" ></script>
+    <script src="/js/video/text_plugin.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <script type="text/javascript" src="/js/common/proxycommon.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>开幕式大屏</title>
+</head>
+<body>
+<?php $arr = $data['result'];?>
+<input type='hidden' id="comp_id" name='comp_id' value='<?php echo $data['comp_id'];?>' />
+<input type='hidden' id="meet_id" name='meet_id' value='<?php echo $data['meet_id'];?>' />
+<input type='hidden' id="sequence" name='sequence' value='<?php echo $data['sequence'];?>' />
+<input type='hidden' id="num" name='num' value='<?php echo $arr['0']['num'];?>' />
+<input type='hidden' id="shakeUrl" name='shakeUrl' value='<?php echo $arr['0']['loading_url'];?>' />
+<input type='hidden' id="downUrl" name='downUrl' value='<?php echo $arr['0']['countdown_url'];?>' />
+<input type='hidden' id="video_src" name='video_src' value='<?php echo $arr['0']['video_src'];?>' />
+<input type='hidden' id="contents" name='contents' value='<?php echo $arr['0']['video_content'];?>' />
+<input type='hidden' id="shake_text" name='shake_text' value='<?php echo $data['shake_text'];?>' />
+<input type='hidden' id="shake_img" name='shake_img' value='<?php echo $data['shake_img'];?>' />
+<input type='hidden' id="shake_type" name='shake_type' value='<?php echo $data['shake_type'];?>' />
+<input type='hidden' id="sort" name='sort' value='<?php echo $arr['0']['sort'];?>' />
+<input type='hidden' id="total" name='total' value='<?php echo $data['total'];?>' />
+<input type="hidden" id="music_url" value="<?php echo $data['music_url']?>">
+<input type="hidden" id="custom_bg" value="<?php echo $data['custom_bg']?>">
+<input type="hidden" id="custom_pattern" value="<?php echo $data['custom_pattern']?>">
+<input type="hidden" id="custom_color" value="<?php echo $data['custom_color']?>">
+<input type="hidden" id="custom_text" value="<?php echo $data['custom_text']?>">
+<input type="hidden" id="shake_text_color" value="<?php echo $data['shake_text_color']?>">
+<input type="hidden" id="shake_img_url" value="<?php echo $data['shake_img_url']?>">
+<div class="inbody" id="onbody">
+    <audio class="onlineAudio" src="" loop="loop"></audio>
+    <div class="customShakeContent" v-show="shakeUrl == 0" v-cloak>
+        <div class="myopenSpeed" v-show="myinputVal == 1" v-cloak>
+            <div class="myopenBorder" v-model="myprogressColor" v-bind:style="{borderColor:myprogressColor}">
+                <div class="myopenYao" v-model="myprogressColor" v-bind:style="{background:myprogressColor}"></div>
+            </div>
+            <div class="myopenLoading" v-model="myprogressColor" v-bind:style="{color:myprogressColor}"></div>
+        </div>
+        <div class="myopenTextCont" v-show="myinputVal == 2" v-cloak>
+            <div class="myopentextCont" v-model="mytextColor" v-bind:style="{color:mytextColor}" v-cloak>{{myinputText}}</div>
+            <div class="myopentextLoading" v-model="mytextColor" v-bind:style="{color:mytextColor}"></div>
+        </div>
+        <div class="myopenImgCont" v-show="myinputVal == 3" v-cloak>
+            <img id="myopenimgSrc" class="myopenimgSrc"  src="{{mylogo}}" v-model="mylogo">
+            <div class="myopenimgLoading"></div>
+        </div>
+    </div>
+    <section v-if="shakeUrl == 1" v-cloak>
+        <div class="shakeyao">
+            <div class="loading-container">
+                <div class="loading-bar">
+                    <div class="amount red" id="bg">
+                        <div class="lines"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="loaded"></div>
+        </div>
+    </section>
+    <section v-show="shakeUrl == 2" v-cloak>
+        <div class="onlineBgTwo"></div>
+        <div class="onlinedTwo"></div>
+        <div class="textConTwo">
+            <div class="twobg">
+                <div class="ontextTwo" v-show="twoType==0">
+                    <div class="twoZhe"></div>
+                    <span id="twoT"  class="twoText" v-model="twoText">{{twoText}}</span>
+                    <h3 class="tbai"></h3>
+                </div>
+                <div class="twoimgCont" v-show="twoType==1">
+                    <div class="imgZhe"></div>
+                    <img id="twoimg" v-model="twoimg" src="{{twoimg}}">
+                    <h3 class="imgbai"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="onlang">
+            <div class="onl"></div>
+            <div class="onl2"></div>
+        </div>
+    </section>
+
+    <section v-if="shakeUrl == 3" v-cloak>
+        <div class="onlineBg"></div>
+        <div class="onlined"></div>
+        <div class="onlineBeam"></div>
+        <div class="textCont">
+            <div class="ontext" v-show="shType==0">
+                <span id="textThree" class="text" v-model="threeText">{{threeText}}</span>
+                <h3 class="thbai"></h3>
+            </div>
+            <div class="onimg" v-show="shType==1">
+                <img id="img" class="timg" v-model="threeimg" src="{{threeimg}}">
+                <h3 class="imgthbai"></h3>
+            </div>
+        </div>
+    </section>
+    <section id="down" style="display: none">
+        <video data-proxyload   id='downVideo' class='downVideo' preload='auto' src=''> </video>
+    </section>
+
+    <section id="editvideo" style="display: none">
+        <video data-proxyload id='showvideo' class='video-js vjs-default-skin video'  preload='auto'  src=''></video>
+            <div class="containers">
+                <h3 id="effect" class="tagline">
+                </h3>
+            </div>
+    </section>
+</div>
+
+</body>
+<input type="hidden" id="url_wslist" value="<?php echo $data['websocket_list']?>">
+<script src="<?php echo $data['meet_js']?>"></script>
+<script src="/js/ws/PlumeWS.js"></script>
+<script src="/js/ws/openEvent.js"></script>
+<script src="/js/online/index.js"></script>
+</html>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

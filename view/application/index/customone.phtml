@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <script src="<?php echo $data['storage_js']?>"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>摇一摇开幕设置</title>
+</head>
+<link rel="stylesheet" href="/css/index/custom.css" type="text/css" />
+<body>
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="shake_type" value="<?php echo $data['shake_type']?>">
+<input type="hidden" id="shake_img" value="<?php echo $data['shake_img']?>">
+<input type="hidden" id="shake_text" value="<?php echo $data['shake_text']?>">
+<input type="hidden" id="shakeUrl" value="<?php echo $data['shakeUrl']?>">
+<input type="hidden" id="cover" value="<?php echo $data['cover']?>">
+<input type="hidden" id="coverName" value="<?php echo $data['coverName']?>">
+<input type="hidden" id="project" value="<?php echo $data['project']?>">
+<input type="hidden" id="module" value="<?php echo $data['module']?>">
+<input type="hidden" id="feature" value="<?php echo $data['feature']?>">
+<input type="hidden" id="env" value="<?php echo $data['env']?>">
+	<div class="shbody" id="upShakeV">
+		<div class="shHender">
+			<span class="shti fi">开幕式</span>
+			<span class="shti fi">></span>
+			<span class="shti fi">摇一摇开幕设置</span>
+			<span class="shti">></span>
+			<span class="shti">自定义</span>
+			<div class="shHend">
+				<button id="preview" class="obtn dBtn">预览</button>
+				<button @click="click" class="obtn dBtn">保存</button>
+				<button class="obtn cancel">取消</button>
+			</div>
+		</div>
+		<div class="upShakeCont" >
+			
+			<div class="wshake">
+				<div class="ybody">
+					<h1 class="bai" v-show="radioType == 0" v-cloak></h1>
+        			<div class="yaocont" v-show="radioType == 0" v-cloak>
+              			<div class='zhe'></div>
+              			<span id="spanText" class='span' v-model="spanText">{{spanText}}</span>
+        			</div>
+        			<h1 class="baiimg" v-show="radioType == 1"  v-cloak></h1>
+        			<div class="yaoimg" v-show="radioType == 1"  v-cloak>
+        				<div class='zheimg'></div>
+                  		<img class='img-logo' width="300" height="70" src="{{spanImg}}" v-model="spanImg"/>
+        			</div>
+				</div>
+			</div>
+			<div class="wcont">
+				<p class="f16">更换视频中的信息</p>
+				<div class="shInput">
+					<input type="radio" name="uploadShake" class="upinput" v-model="radioType" value="0">
+					<i class="iconfont upRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span class="upSpan">更换文字</span>
+					<input id="test" class="uploadCont" type="text" name="shakeText" maxlength="12" readonly="readonly" @change="change" v-model="text">
+				</div>
+				<div class="shInput">
+					<input type="radio" name="uploadShake" class="upinput" v-model="radioType" value="1">
+					<i class="iconfont upRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span class="upSpan">更换图片</span>
+					<input id="uploadFile" type="file" accept=".jpg,.png,.jpeg,.gif,.bmp">
+					<button class="shFile">选择图片</button>
+					<button id="submit" style="display: none;">上传</button>
+				</div>
+				<div class="tishi">
+					<i class="iconfont">&#xe62e;</i>
+					<span>为保证最佳体验，请上传jpg/png格式的图片，尺寸大小建议在800*300px</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 上传图片提示 -->
+	<section class="uploadZhe" style="display: none;">
+    	<div class="upload" >
+    		<p class="ti">正在上传图片</p>
+    		<h3 class="uploadBai">0%</h3>
+    		<div class="loadingCont">
+    			<div class="myloading" ></div>
+    			<div class="myloading"></div>
+    			<div class="myloading l-last"></div>
+    		</div>
+    	</div>
+	</section>
+</body>
+<script type="text/javascript" src="/js/index/custom.js" ></script>
+
+<script>
+$().ready(function(){
+	shakeInit();
+})
+</script>
+</html>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

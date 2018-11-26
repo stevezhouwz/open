@@ -1,0 +1,40 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: SAMSUNG-R428
+ * Date: 16-1-25
+ */
+return array(
+	'db' => array(  //数据库配置信息
+		'driver'    => 'mysql',
+		'host' => '2317_openceremony_mysql_ip',
+		'username'=>'root',
+		'password'=>'2317_openceremony_mysql_pwd',
+		'database'=>'nh_ceremony',
+		'port' => '2317_openceremony_mysql_port',
+		'charset'=>'utf8',
+		'collation' => 'utf8_general_ci',
+		'prefix'    => ''
+	),
+
+	'redis' => array(  //redis配置信息
+		'host' => '2317_openceremony_redis_ip',
+		'port' => '2317_openceremony_redis_port'
+	),
+    'annual' => array(
+            'display_server' => "http://2205_service_web_api", // 生产(年会手机、PC端控制大屏端请求命令地址)
+            'url_js' => "http://2201_control_web_url",  //返回首页js
+            'total' => "http://2301_analysis_collect_url", //统计接口地址
+            "project"=>"huishen",//图片上传项目名称
+            "meet_js"=>"http://2201_control_web_url",//大屏meetContro.js
+            "storage_js"=>"http://1506_storage_web_url",//上传图片、视频、音乐、地址
+            "module"=>"mt-open",//上传模块名
+            "feature"=>"1002_nhds_version", //上传文件夹名
+            "env"=>"1002_nhds_version",//上传环境
+            "speed"=>"http://2202_design_web_url/application/meetTab/speedguide",//加速器下载地址
+            "newyear"=>"http://2101_mtweb_web_url",//正式年会大师判断是否开通
+            "nh_admin"=>"http://2101_mtweb_admin_url", //年会网站运营端
+    ),
+    'websocket_list' => "ws://2412_ws02_ws_ip:2412_ws02_ws_openport",
+    'host' => "http://2317_openceremony_web_url",
+);

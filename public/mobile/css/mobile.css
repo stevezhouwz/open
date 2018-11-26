@@ -1,0 +1,151 @@
+*{padding:0;margin: 0}
+body{
+	background: #ff5c54;
+}
+.body{
+	background: #ff5c54;
+	width: 100%;
+}
+.hander{
+	width  : 100%;
+	height : 40%;
+}
+.img1{
+	background: url("/mobile/img/bg-1.png") no-repeat center center;
+	background-size:100% 100%;
+	width  : 100%;
+	height : 100%;
+}
+.zhong{
+	width  : 100%;
+	height : 50%;
+}
+.img2{
+	background: url("/mobile/img/bg-2.png") no-repeat center center;
+	background-size:65% 65%;
+	width  : 100%;
+	height: 64%;
+	margin-top: -8%;
+}
+*{padding:0;margin: 0}
+.shake_box {
+	background: url(/mobile/img/xiaolian1.png) no-repeat #1e2020 center center;
+	position: fixed;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+}
+.shakTop{
+	background: #ff5c54;
+	position: fixed;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	height: 56%;
+
+}
+.shakBottom {
+	background: #ff5c54;
+	position: fixed;
+	left: 0;
+	width: 100%;
+	height: 44%;
+}
+.shakBottom>span{
+	color: white;font-size: 24px;
+}
+.shakTop    {top    : 0;}
+.shakBottom {bottom : 0;}
+
+.shakTop span,.shakBottom span{
+	background: url(/mobile/img/yaoyiyao2.png) center center no-repeat;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+}
+.shakTop    span{bottom : 0px;left: 11px;}
+.shakBottom span{
+	background-position: 0 -254px;
+	top: 0;
+	text-align: center;
+}
+
+.shake_box_focus .shakTop{
+	animation        : shakTop 1s 1 linear;
+	-moz-animation   : shakTop 1s 1 linear;
+	-webkit-animation: shakTop 1s 1 linear;
+	-ms-animation    : shakTop 1s 1 linear;
+	-o-animation     : shakTop 1s 1 linear;
+}
+.shake_box_focus .shakBottom{
+	animation        : shakBottom 1s 1 linear;
+	-moz-animation   : shakBottom 1s 1 linear;
+	-webkit-animation: shakBottom 1s 1 linear;
+	-ms-animation    : shakBottom 1s 1 linear;
+	-o-animation     : shakBottom 1s 1 linear;
+}
+
+/* 向上拉动画效果 */
+@-webkit-keyframes shakTop   {
+	0%   {top: 0;}
+	50%  {top: -200px;}
+	100% {top: 0;}
+}
+@-moz-keyframes shakTop      {
+	0%   {top: 0;}
+	50%  {top: -200px;}
+	100% {top: 0;}
+}
+@-ms-keyframes shakTop       {
+	0%   {top: 0;}
+	50%  {top: -200px;}
+	100% {top: 0;}
+}
+@-o-keyframes shakTop        {
+	0%   {top: 0;}
+	50%  {top: -200px;}
+	100% {top: 0;}
+}
+
+/* 向下拉动画效果 */
+@-webkit-keyframes shakBottom   {
+	0%   {bottom: 0;}
+	50%  {bottom: -200px;}
+	100% {bottom: 0;}
+}
+@-moz-keyframes shakBottom      {
+	0%   {bottom: 0;}
+	50%  {bottom: -200px;}
+	100% {bottom: 0;}
+}
+@-ms-keyframes shakBottom       {
+	0%   {bottom: 0;}
+	50%  {bottom: -200px;}
+	100% {bottom: 0;}
+}
+@-o-keyframes shakBottom        {
+	0%   {bottom: 0;}
+	50%  {bottom: -200px;}
+	100% {bottom: 0;}
+}
+.result {font-size:55px; background: #393B3C; border: #2C2C2C 1px solid; box-shadow: inset #4D4F50 0 0 0 1px; border-radius: 10px; color: #fff; padding: 10px; width: 300px; opacity: 0;
+	-webkit-transition: all 1s;
+	-moz-transition: all 1s;
+	-ms-transition: all 1s;
+	-o-transition: all 1s;
+	transition: all 1s; }
+.result-show { opacity: 1; margin-top: 50px; }
+.startOpen{
+	text-align: center;
+	font-size: 25px;
+	color: white;
+	padding-top: 55%;
+	display: none;
+}
+.zhong_i{
+	text-align: center;    margin-top: -45px;
+}
+.zhong_i>i{font-size: 200px;color: #fffdbe;}
+.my_body{display: none;}

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/index/index.css" type="text/css" />
+	<link rel="stylesheet" href="/pop/animate.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+	<link rel="shortcut icon" href="/img/open.png">
+    <title>开幕式</title>
+</head>
+<body>
+<?php $cover=$data['openCover'];?>
+<input id="sequence" type="hidden" value="<?php echo $data['sequence']?>">
+<input id="loading_url" type="hidden" value="<?php echo $data['loading_url']?>">
+<input id="shake_text" type="hidden" value="<?php echo $data['shake_text']?>">
+<input id="shake_img" type="hidden" value="<?php echo $data['shake_img']?>">
+<input id="shake_type" type="hidden" value="<?php echo $data['shake_type']?>">
+<input type="hidden" id="music_url" value="<?php echo $data['music_url']?>">
+<input type="hidden" id="custom_bg" value="<?php echo $data['custom_bg']?>">
+<input type="hidden" id="custom_pattern" value="<?php echo $data['custom_pattern']?>">
+<input type="hidden" id="custom_color" value="<?php echo $data['custom_color']?>">
+<input type="hidden" id="custom_text" value="<?php echo $data['custom_text']?>">
+<input type="hidden" id="shake_text_color" value="<?php echo $data['shake_text_color']?>">
+<input type="hidden" id="shake_img_url" value="<?php echo $data['shake_img_url']?>">
+
+<input id="downUrl" type="hidden" value="<?php echo $data['downUrl']?>" pre_url="<?php echo $data['down_pre']?>">
+<input id="vidUrl" type="hidden" value="<?php echo $data['video_src']?>" pre_url="<?php echo $data['video_pre']?>">
+<input id="videoCont" type="hidden" value='<?php echo $data['video_content']?>'>
+<audio class="yuPre" src="<?php echo $data['music_url']?>" loop="loop"></audio>
+	<div class="openBody" id="openBody">
+		<div class="openHender">
+			<span class="ti">开幕式</span>
+			<div class="openHend">
+				<a class="openA" href="<?php echo $data['speed']?>" target="_blank">播放视频卡? 点我加速</a>
+				<button id="myOpenPre" class="obtn longBtn">开幕式预览</button>
+				<button id="save" class="obtn dBtn">保存</button>
+			</div>
+		</div>
+		<div class="openText">已选素材</div>
+		<div class="openCont">
+			<div class="openList">
+				<div class="openInput">
+					<input id="shyao" class="openCheckbox" type="checkbox" name="shake" v-model="first" value="1" dic="<?php echo $data['first']?>">
+					<i class="iconfont check" after="&#xe62c" before="&#xe62b"></i>
+					<span>设置摇一摇开幕</span>
+				</div>
+				<div class="oContent">
+					<div v-show="first != 1" class="bigZhe"></div>
+					<span class="contSpan">已选素材：</span>
+					<span class="contSpan"><?php echo isset($cover['0']['load_name'])?$cover['0']['load_name']:"";?></span>
+					<div class="openImg">	
+						<div class="sZhe">
+<!--							<button id="shakePre" class="btny">预览</button>-->
+<!--							<button id="shakeUrl" class="btny">更改</button>-->
+                            <div id="shakePre" class="in_block">
+                                <i class="iconfont pre">&#xe6d9;</i>
+                                <p>预览</p>
+                            </div>
+                            <div id="shakeUrl"  class="in_block">
+                                <i class="iconfont">&#xe649;</i>
+                                <p>自定义</p>
+                            </div>
+						</div>
+						<img alt="" src="<?php echo isset($cover['0']['load_cover'])?$cover['0']['load_cover']:"";?>" width="100%" height="190">
+					</div>
+					<div class="xian"></div>
+					<div class="text">
+							现场观众互动参与通过摇一摇达到指定次数一起掀开活动序幕
+					</div>
+				</div>
+			</div>
+			
+			<div class="openList">
+				<div class="openInput">
+					<input id="downCheck" class="openCheckbox" type="checkbox" name="shake" v-model="two" value="2" dic="<?php echo $data['two']?>">
+					<i class="iconfont check" after="&#xe62c" before="&#xe62b"></i>
+					<span>设置倒计时</span>
+				</div>
+				<div class="oContent">
+					<div v-show="two != 2" class="bigZhe"></div>
+					<span class="contSpan">已选素材：</span>
+					<span class="contSpan long"><?php echo isset($cover['0']['countdown_name'])?$cover['0']['countdown_name']:"";?></span>
+					<div class="openImg">	
+						<div class="sZhe">
+<!--							<button id="downPre" class="btny myPlay">预览</button>-->
+<!--							<button id="countdown" class="btny">更改</button>-->
+                            <div id="downPre" class="in_block">
+                                <i class="iconfont pre">&#xe6d9;</i>
+                                <p>预览</p>
+                            </div>
+                            <div id="countdown"  class="in_block">
+                                <i class="iconfont">&#xe649;</i>
+                                <p>自定义</p>
+                            </div>
+						</div>
+						<img alt="" src="<?php echo isset($cover['0']['countdown_cover'])?$cover['0']['countdown_cover']:"";?>" width="100%" height="190">
+					</div>
+					<div class="xian"></div>
+					<div class="text">
+							现场活动正式开幕倒计时增强活动启动氛围
+					</div>
+				</div>
+			</div>
+			
+			<div class="openList last">
+				<div class="openInput">
+					<input id="openVideo" class="openCheckbox" type="checkbox" name="shake" v-model="three" value="3" dic="<?php echo $data['three']?>">
+					<i class="iconfont check" after="&#xe62c" before="&#xe62b"></i>
+					<span>设置开场视频</span>
+				</div>
+				<div class="oContent">
+					<div v-show="three != 3" class="bigZhe"></div>
+					<span class="contSpan">已选素材：</span>
+					<span class="contSpan long" title="<?php echo isset($cover['0']['video_name'])?$cover['0']['video_name']:"";?>"><?php echo isset($cover['0']['video_name'])?$cover['0']['video_name']:"";?></span>
+					<div class="openImg">	
+						<div class="sZhe">
+<!--							<button id="videoPre" class="btny myPlay">预览</button>-->
+<!--							<button id="videoUpdate" class="btny">更改</button>-->
+                            <div id="videoPre" class="in_block">
+                                <i class="iconfont pre">&#xe6d9;</i>
+                                <p>预览</p>
+                            </div>
+                            <div id="videoUpdate"  class="in_block">
+                                <i class="iconfont">&#xe649;</i>
+                                <p>自定义</p>
+                            </div>
+						</div>
+						<img alt="" src="<?php echo isset($cover['0']['video_cover'])?$cover['0']['video_cover']:"";?>" width="100%" height="190">
+					</div>
+					<div class="xian"></div>
+					<div class="text">
+							展示企业文化诉说企业成长与发展点燃活动现场热情
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="openFoot">
+		
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="/js/index/index.js" ></script>
+</html>
+<?php include(BASE_PATH . "/view/layout/wnoShakeTh.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/shakeOne.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/wnoShakeOne.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/wnoShakeTwo.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/videoplay.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/videolayout.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/myOpen.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

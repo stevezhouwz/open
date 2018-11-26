@@ -1,0 +1,29 @@
+1.技术依赖
+	语言环境
+		PHP5.2.5
+
+	相关依赖
+		Redis
+		mysql
+		nginx
+		composer
+
+2.配置文件
+	配置文件
+		路径：src/config/application.config
+			db字段,数据库相关信息配置。
+			application.config.dist（开发）
+			application.config.test（测试）
+			application.config.pro（正式）
+	(其余字段都暂时无用，可不用配置)
+    数据库导入：
+        路径：src/deploy
+           （1）首先执行nh_ceremony.sql
+            (2) 再执行默认数据文件data.sql
+
+3.额外部署操作说明
+	（1）进入src下运行命令
+		composer install
+		composer.phar dump-autoload
+		composer.phar update
+	

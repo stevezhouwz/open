@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/videojs.css" type="text/css" />
+    <link rel="stylesheet" href="/css/video/videoedit.css" type="text/css" />
+	<link rel="stylesheet" href="/pop/animate.css" type="text/css" />
+	<link rel="stylesheet" href="/pop/colpick.css" type="text/css" />
+	<link rel="stylesheet" href="/pop/pop.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <script src="/pop/colpick.js"></script>
+    <script src="/pop/edit.min.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>开场视频编辑</title>
+</head>
+<body>
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="videoUrl" value="<?php echo $data['videoUrl']?>">
+<input type="hidden" id="preview_url" value="<?php echo $data['preview_url']?>">
+	<div id="vEdioB" class="videoBody">
+		<div class="shHender">
+			<span class="shti fi">开幕式</span>
+			<span class="shti fi">></span>
+			<span class="shti fi">开场视频设置</span>
+			<span class="shti">></span>
+			<span class="shti">自定义</span>
+			<div class="shHend">
+				<button id="reread" class="obtn dBtn">预览</button>
+				<button id="save" class="obtn dBtn">保存</button>
+				<button class="obtn cancel">取消</button>
+			</div>
+		</div>
+		<section id="countvedio">
+            <video data-proxyload id="showvideo" class="video-js vjs-default-skin video" controls="controls" width='450' height='320' preload="auto"
+        	 	poster="" data-setup="{}" >
+            	<source id="source" src="" type='video/mp4' />
+        	</video>
+        	 <div class="containers">
+                 <h3 id="effect" class="tagline">
+        		 </h3>
+             </div>
+        	<div id="vedioedit">
+        	</div>
+        	<div class="vText">
+        		<p class="fp">说明</p>
+        		<p>1、鼠标移至视频区域，点击进度条选定视频中的某一时刻;</p>
+        		<p>2、右侧会显示对应时刻，可直接编辑需要显示的文字;</p>
+        		<p>3、点击预览可查看文字插入后的视频显示效果;</p>
+				<p>4、文字插入的时间间隔大于3秒时播放体验会更佳。</p>
+        	</div>
+		</section>
+	</div>
+</body>
+<input type="hidden" id="contents" value='<?php echo $data["contents"]?>'>
+<script type="text/javascript" src="/js/index/video.js" ></script>
+<script type="text/javascript" src="/js/video/videoedit.js" ></script>
+<script>
+$().ready(function(){
+
+    if($("#preview_url").val()){
+        var src = $("#preview_url").val();
+    }else {
+        var src = $("#videoUrl").val();
+    }
+	$("#showvideo_html5_api").attr("src",src);
+	videoInit();
+})
+</script>
+</html>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/uploadvideo.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>倒计时设置</title>
+</head>
+<link rel="stylesheet" href="/css/countdown/index.css" type="text/css" />
+<body>
+
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="downType" value="<?php echo $data['downType']?>">
+<input type="hidden" id="downUrl" value="<?php echo $data['downUrl']?>">
+<input type="hidden" id="storage" value="<?php echo $data['storage']?>">
+<input type="hidden" id="project" value="<?php echo $data['project']?>">
+<input type="hidden" id="feature" value="<?php echo $data['feature']?>">
+<input type="hidden" id="module" value="<?php echo $data['module']?>">
+<input type="hidden" id="env" value="<?php echo $data['env']?>">
+<input type="hidden" id="down_nav" value="<?php echo $data['down_nav']?>">
+	<div id="countdown" class="shbody">
+		<div class="shHender">
+			<span class="shti fi">开幕式</span>
+			<span class="shti">></span>
+			<span class="shti">倒计时设置</span>
+			<div class="shHend">
+                <button v-show="navType ==1" id="guan" class="obtn dBtn" v-cloak>管理</button>
+				<button @click="click" class="obtn dBtn">保存</button>
+				<button class="obtn cancel">取消</button>
+			</div>
+		</div>
+        <div class="vNavCont">
+            <div class="vnavBtn left active" v-model="navType" value="0" >默认素材库</div>
+            <div class="vnavBtn right" v-model="navType" value="1">个人素材库</div>
+            <div class="textTi" v-if="navType ==1" v-cloak>
+                <i class="iconfont">&#xe62e;</i>
+                <span>（上传支持avi、rmvb、mp4、mkv、flv格式，建议大小不超过1G）</span>
+            </div>
+        </div>
+
+        <div class="moDown" v-show="navType == 0">
+            <div class="setNum">
+                <span>选择时长</span>
+                <div class="select">
+                    <div class="down"><i class="iconfont">&#xe669;</i></div>
+                    <select v-model="downType">
+                        <option value="0">5s倒计时</option>
+                        <option value="1">10s倒计时</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="shakeCont">
+
+                <!-- 5s倒计时   -->
+                <section class="section" v-show="downType == 0" v-cloak>
+                <?php $five=$data['resFive'];foreach ($five as $val){?>
+                    <div class="shakeList" >
+                        <div class="shakeImg">
+                            <input type="hidden" name="videosrc" value="">
+                            <div class="shakeZhe">
+                                <div class="shakeBtn">
+                                    <i class="iconfont">&#xe6d9;</i>
+                                    <p>预览</p>
+                                </div>
+                            </div>
+                            <img name="cover" alt="" src="<?php echo $val['video_cover']?>" width="150" height="150">
+                        </div>
+                        <div class="shakeRadio Radio5">
+                            <input class="shRadio" type="radio" name="shake" v-model="downUrl" dic_id="<?php echo $val['video_id']?>"  pre_url="<?php echo $val['preview_url']?>" value="<?php echo $val['video_url']?>">
+                            <i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+                            <span><?php echo $val['video_name']?></span>
+                        </div>
+                    </div>
+                    <?php }?>
+                </section>
+
+                <!-- 10s倒计时   -->
+
+                <section v-show="downType == 1" v-cloak>
+                    <?php $ten=$data['resTen'];foreach ($ten as $row){?>
+                    <div class="shakeList" >
+                        <div class="shakeImg">
+                            <input type="hidden" name="videosrc" value="">
+                            <div class="shakeZhe">
+                                <div class="shakeBtn">
+                                    <i class="iconfont">&#xe6d9;</i>
+                                    <p>预览</p>
+                                </div>
+                            </div>
+                            <img name="cover" alt="" src="<?php echo $row['video_cover']?>" width="150" height="150">
+                        </div>
+                        <div class="shakeRadio Radio10">
+                            <input class="shRadio" type="radio" name="shake" v-model="downUrl" dic_id="<?php echo $row['video_id']?>" pre_url="<?php echo $row['preview_url']?>" value="<?php echo $row['video_url']?>">
+                            <i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+                            <span><?php echo $row['video_name']?></span>
+                        </div>
+                    </div>
+                    <?php }?>
+                </section>
+
+            </div>
+        </div>
+        <div class="customDown" v-show="navType == 1">
+            <div id="upload-div">
+                <div class="uploadbox">
+                    <div class="uploadbox-title">
+                        <span>视频上传</span>
+                        <span class="iconfont iconfont2">&#xe654;</span>
+                    </div>
+                    <span style="color: #ff5c54;font-weight: bold;" id="upprecent">0%</span>
+                    <div class="uploadprecess">
+                        <div class="uploadprecess-bar">
+
+                        </div>
+                    </div>
+                    <button id="uploadbtn" style="display: none;"></button>
+                    <button class="close-upload retrybtn" id="retrybtn" disabled="disabled">重试</button>
+                    <button class="close-upload" id="cancelbtn">取消上传</button>
+                </div>
+            </div>
+            <input id="files" type="file" accept=".avi,.rmvb,.mp4,.mkv,.flv">
+            <div class="up_video" onclick="$('input[id=files]').click();">
+                <div class="up_cont">
+                    <i class="iconfont">&#xe658;</i>
+                    <p class="add_span">上传视频</p>
+                </div>
+            </div>
+            <?php $ten=$data['downData'];foreach ($ten as $row){?>
+                <div class="shakeList" v_status="<?php echo $row['video_status']?>">
+                    <div class="shakeImg">
+                        <template v-if="<?php echo $row['video_status']?>">
+                            <div class="shakeZhe">
+                                <div class="shakeBtn">
+                                    <i class="iconfont">&#xe6d9;</i>
+                                    <p>预览</p>
+                                </div>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="shakeSZhe">
+                                <span class="ing">正在转码...</span>
+                            </div>
+                        </template>
+                        <img name="cover" alt="" src="<?php echo $row['video_cover']?>" width="150" height="150">
+                    </div>
+                    <div class="shakeRadio">
+                        <input class="shRadio" type="radio" name="shake" v-model="downUrl" dic_id="<?php echo $row['video_id']?>" value="<?php echo $row['video_url']?>">
+                        <i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+                        <span><?php echo $row['video_name']?></span>
+                    </div>
+                </div>
+            <?php }?>
+        </div>
+	</div>
+</body>
+<script type="text/javascript" src="/js/countdown/index.js" ></script>
+<script src="<?php echo $data['storage_js']?>"></script>
+<script type="text/javascript" src="/js/common/uploaddown.js" ></script>
+</html>
+<?php include(BASE_PATH . "/view/layout/videoplay.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

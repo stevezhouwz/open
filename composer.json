@@ -1,0 +1,22 @@
+{
+  "require": {
+    "illuminate/database": "*",
+    "joshcam/mysqli-database-class": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Infobird\\": "vendor/infobird/",
+      "Infobird\\Controller\\": "vendor/infobird/Controller/",
+      "Infobird\\Utils\\": "vendor/infobird/Utils/",
+      "Infobird\\Service\\": "vendor/infobird/Service/",
+      "Infobird\\Dao\\": "vendor/infobird/Dao/",
+      "Infobird\\DbModel\\": "vendor/infobird/DbModel/",
+      "Application\\": "module/application/",
+      "Application\\Controller\\": "module/application/Controller/",
+      "Application\\Utils\\": "module/application/Utils/",
+      "Application\\Service\\": "module/application/Service/",
+      "Application\\Dao\\": "module/application/Dao/",
+      "Application\\DbModel\\": "module/application/DbModel/"
+    }
+  }
+}

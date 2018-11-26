@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+	<link rel="stylesheet" href="/css/material/index.css" type="text/css">
+	<script src="/js/common/jquery-1.12.0.min.js"></script>
+	<script src="/js/common/bootstrap.min.js"></script>
+	<link rel="shortcut icon" href="/img/open.png">
+    <title>资源配置</title>
+</head>
+<body>
+	<div class="mainStage">
+		<div class="mTitle">
+			<div class="mtLocation mRow" id="Location">
+				<p class="mtlText mtlShade">开幕式</p>
+				<span class="mtlNext">&gt;</span>
+				<p class="mtlText">资源管理</p>
+			</div>
+<!--			<div class="mtControl mRow">-->
+<!--				<button class="mButton mbYes mtcB">好的</button>-->
+<!--				<button class="mButton mbNo mtcB">没必要</button>-->
+<!--			</div>-->
+			<div class="mtGuides">
+				<p class="mtgGuide"><i class="mvsSignal iconfont hasPre">&#xe67a;</i>表示已添加预览视频</p>
+				<p class="mtgGuide"><i class="mvsSignal iconfont hasM">&#xe67a;</i>表示已添加资源文件</p>
+			</div>
+		</div>
+		<div class="mTabs mRow">
+			<div class="mtTab mCenter mttLeft">
+				<p>5s倒计时</p>
+			</div>
+			<div class="mtTab mCenter mttMiddle">
+				<p>10s倒计时</p>
+			</div>
+			<div class="mtTab mCenter mttRight">
+				<p>开场视频</p>
+			</div>
+		</div>
+
+		<div class="mVideos mRow" id="videos">
+			<div class="mvPart" id="addVideo">
+				<div class="mvAdd mvVideo">
+					<i class="iconfont mvaIcon">&#xe658;</i>
+					<p class="mvaHint">添加</p>
+				</div>
+				<div class="mvHints">
+					<p>提示</p>
+				</div>
+			</div>
+
+<!--			<div class="mvPart mvEach">-->
+<!--				<div class="mvAdd mvVideo">-->
+<!--					<i class="iconfont mvaIcon">&#xe658;</i>-->
+<!--					<p class="mvaHint">添加</p>-->
+<!--				</div>-->
+<!--				<div class="mvHints">-->
+<!--					<p>提示</p>-->
+<!--				</div>-->
+<!--				<div class="mvCover"></div>-->
+<!--			</div>-->
+		</div>
+
+		<div id="addSection" class="maShade">
+			<div class="maContent">
+				<i class="iconfont masClose" onclick="closeWindow()">&#xe6d0;</i>
+				<div class="maTitle">
+					<div class="matHints mRow" id="editTarget">
+						<p>修改目标：</p>
+						<p class="editTarget"></p>
+					</div>
+					<p id="ctrlName">标题</p>
+				</div>
+				<div class="maMain mRow">
+					<div class="mamFrame" id="videoContainer">
+						<div class="mamPart">
+							<div class="mamCtrls"></div>
+							<div class="mamAddButton maAddHide videoAdd" id="videoAdd">
+								<div class="mamBlock mamAdd">
+									<i class="iconfont mvmaIcon">&#xe658;</i>
+								</div>
+								<div class="mvHints">
+									<p class="mamaHint">原始视频选择</p>
+								</div>
+							</div>
+						</div>
+
+<!--						<div class="mamPart mamUpVideo">-->
+<!--							<div class="mamBlock">-->
+<!--								<img src="/img/newlogo.png" class="mamUPImg">-->
+<!--							</div>-->
+<!--							<div class="mvHints">-->
+<!--								<input type="text" class="mamaHint mamInput">-->
+<!--							</div>-->
+<!--							<div class="maCover">-->
+<!--								<div class="maUploading">-->
+<!--									<div class="maProcess">-->
+<!--										<div class="mapColor"></div>-->
+<!--									</div>-->
+<!--									<div class="mapTextFrame mRow">-->
+<!--										<p class="mapText">已完成：</p>-->
+<!--										<p class="mapNum nowProcess">100%</p>-->
+<!--									</div>-->
+<!--								</div>-->
+<!--								<div class="maRecoding">-->
+<!--									<p class="marText">转码中……</p>-->
+<!--								</div>-->
+<!--							</div>-->
+<!--						</div>-->
+					</div>
+					<div class="mamFrame" id="preContainer">
+						<div class="mamPart">
+							<div class="mamCtrls">
+								<input type="checkbox" val="" class="isNeedShow" checked>
+							</div>
+							<div class="mamAddButton maAddHide videoAdd" id="videoAdd">
+								<div class="mamBlock mamAdd">
+									<i class="iconfont mvmaIcon">&#xe658;</i>
+								</div>
+								<div class="mvHints">
+									<p class="mamaHint">预览视频选择</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="mamFrame" id="matContainer">
+						<div class="mamPart">
+							<div class="mamCtrls">
+								<input type="checkbox" val="" class="isNeedShow" checked>
+							</div>
+							<div class="mamAddButton maAddHide videoAdd" id="videoAdd">
+								<div class="mamBlock mamAdd">
+									<i class="iconfont mvmaIcon">&#xe658;</i>
+								</div>
+								<div class="mvHints">
+									<p class="mamaHint">资源文件选择</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="maBottom mRow">
+					<button class="mButton mbYes mtcB" id="startUpVideo">上传</button>
+					<button class="mButton mbYes mtcB mHidden" id="saveVideos">保存</button>
+					<input type="file" class="mHidden" id="videoFile"/>
+					<button type="button" class="mHidden" id="realUpVideo"></button>
+					<input type="file" class="mHidden" id="preFile"/>
+					<button type="button" class="mHidden" id="realUpPre"></button>
+					<input type="file" class="mHidden" id="materialFile"/>
+					<button type="button" class="mHidden" id="realUpMaterial"></button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<input type="hidden" value="<?php echo $data['storageJs']?>" id="storageJs">
+	<input type="hidden" value="<?php echo $data['project']?>" id="project">
+	<input type="hidden" value="<?php echo $data['module']?>" id="module">
+	<input type="hidden" value="<?php echo $data['feature']?>" id="feature">
+	<input type="hidden" value="<?php echo $data['env']?>" id="env">
+</body>
+<script type="text/javascript" src="<?php echo $data['storageJs'];?>/public/javascripts/storage.min.js"></script>
+<script type="text/javascript" src="/js/material/index.js"></script>
+</html>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

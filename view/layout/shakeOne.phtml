@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/css/index/loading2.css" type="text/css" />
+<style>
+.yaoZhe{clear: both;display: block;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);}
+.shakeCent{position: absolute;left: 50%;top: 50%;margin-left: -225px;margin-top: -160px;text-align: center;}
+.shakeBai{font-size: 20px;position: relative;top: 90px;color: rgb(255, 247, 153);}
+.shakeMove{height: 70px;width:0px;position: relative;top: 100px;margin-left:50px; background: #862525;}
+.closeDiv{width: 475px; text-align: right;}
+.closeDiv i{color: white;font-size: 20px;cursor: pointer;}
+.shakeyao{height: 320px;width: 450px;background: #272F32;}
+
+#shakeOne{display: none;}
+</style>
+<section id="shakeOne" class="yaoZhe">
+	<div class="shakeCent">
+		<div class="closeDiv" >
+			<i class="iconfont iclose">&#xe654;</i>
+		</div>
+		<div class="shakeyao">
+			<div class="loaded"></div>
+			<div class="loading-container">
+				<div class="loading-bar">
+					<div class="amount red" id="bg">
+						<div class="lines"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+
+var i=0;
+var width=380;
+function shakeAdd(i){
+	$(".amount").css("width",i);
+	var bai = Math.round(i*100 / width);
+	$(".loaded").html(bai+"%");
+}
+function shakeMove(music_url){
+	if(i>width){
+		return i=0;
+	}
+	if(i/width<=1){
+		t = setTimeout("shakeMove()",10)
+		shakeAdd(i);
+	    i++;
+		}
+    if(music_url) {
+        $(".preAudio").attr("src", music_url);
+        $(".preAudio")[0].load();
+        $(".preAudio")[0].play();
+    }
+}
+$().ready(function(){
+	$(".closeDiv i").click(function(){
+		$(".loaded").html("");
+		$(".amount").css("width","0px");
+		$("#shakeOne").hide();
+		clearTimeout(t);
+        if($("#music_url").val() || $("#checkMusic").val()) {
+            $(".preAudio")[0].pause();
+        }
+		return i=0;
+	})
+	//shakeMove();
+})
+</script>

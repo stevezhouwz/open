@@ -1,0 +1,24 @@
+
+# Binary gettext files
+*.po
+
+# Data
+log/
+logs/
+cache/
+temp/
+tmp/
+
+# ZF1
+demos/
+extras/documentation
+.buildpath
+.project
+
+# Thumbs
+Thumbs.db
+
+# PHPStrom
+.idea
+.idea/
+application.config.php

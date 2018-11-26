@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="开幕式">
+	<meta name="description" content="开幕式">
+	<link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+	<script src="/js/common/jquery-1.12.0.min.js"></script>
+	<link rel="shortcut icon" href="/img/open.png">
+	<title>pc控制器</title>
+</head>
+<style>
+#button{margin-top: 100px;text-align: center;  }
+.btn-class{display: block;width: 160px;margin: 18px auto;border-radius: 40px;border: 1px solid #D3D3D3;  height: 40px;font-size: 14px;outline: none;  }
+.btn-grp{color: #fff;background: #D3D3D3;cursor: no-drop;  }
+.clk-class{background:#ff4343;!important;color:#ffffff;!important;}
+.btn-grp:hover{background:#ff4343;color:#ffffff;border: 1px solid #ff4343;}
+</style>
+<input type="hidden" id="display_server" value="<?php echo $data['display_server']?>">
+<input type="hidden" id="compId" value="<?php echo $data['comp_id']?>">
+<input type="hidden" id="meetId" value="<?php echo $data['meet_id']?>">
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="url_wslist" value="<?php echo $data['websocket_list']?>">
+<div class='middle'>
+	<div id="button"  >
+		<button type="button" class="btn-class  btn-grp" id="start" disabled="disabled">启动</button>
+	</div>
+</div>
+<script src="/js/ws/PlumeWS.js"></script>
+<script src="/js/ws/openEvent.js"></script>
+<script src="/js/ws/controlWs.js"></script>

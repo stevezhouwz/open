@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="/pop/animate.css" type="text/css" />
+<link rel="stylesheet" href="/pop/pop.css" type="text/css" />
+<style>
+.videZhe{clear: both;display: none;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);}
+.videCont{border: 1px solid black; width: 452px;height: 320px;background: black;position: relative;left: 50%;top: 50%;margin-left: -226px;margin-top: -160px;}
+.vcloseDiv{width: 475px; text-align: right;}
+.vcloseDiv i{color: white;font-size: 20px;cursor: pointer;position: relative;top: -23px;}
+
+/**********视频css***********/
+.videop{background: black;position: absolute;top:0px;}
+#showvideo{clear:both;position:absolute;}
+.containers{clear: both;position: absolute; display: inline-block;width: 450px;height: 272px;left: 0px;overflow: hidden;}
+#effect{visibility: visible;display: block;vertical-align:middle;overflow: hidden;font-size: 40px;z-index: 10000;text-align: center;overflow:hidden;height: 200px; margin-top: 15%;}
+
+#showvideo_html5_api{height: 320px;width: 450px;}
+
+</style>
+<section id="videoSe" class="videZhe">
+	<div class="videCont" >
+		<div class="vcloseDiv" >
+			<i id="vclose" class="iconfont vclose">&#xe654;</i>
+		</div>
+		<div class="videop">
+			<video data-proxyload1 id="showvideo"  width='450' height='320' preload="auto"
+        	 	 autoplay="autoplay" src="">
+        	</video>
+        	 <div class="containers">
+                 <h3 id="effect" class="tagline">
+        		 </h3>
+             </div>
+		</div>
+	</div>
+</section>
+<script>
+var timerPre = "";
+var timeArr = new Array();
+var centArr = new Array();
+
+$().ready(function(){
+	$("#vclose").click(function(){
+		$("#videoSe").hide();
+		clearInterval(timerPre);
+		$("#effect").html("");
+		$("#showvideo").attr("src","");
+	})
+})
+
+function getvDate(content,src){
+//	var srcArr =  src.split('.');
+//	var srcArray = [
+//		'com/default/openceremony/video/start_1',
+//		'com/default/openceremony/video/start_2',
+//		'com/default/openceremony/video/start_3',
+//		'com/default/openceremony/video/start_4',
+//		'com/default/openceremony/video/start_5',
+//	];
+//	var iscun = $.inArray(srcArr[srcArr.length - 2],srcArray);
+//	if(iscun >= 0){
+//		var ds = srcArr[srcArr.length - 2] + "_preview";
+//		srcArr.splice(srcArr.length - 2,1,ds);
+//		var src2 = srcArr.join('.');
+//	}else {
+//		var src2 = src;
+//	}
+	$("#showvideo").attr("src",src);
+
+//	ProxyLoad1({
+//		url: 'http://localhost:3000',
+//	});
+	if(content != ""){
+		var contents = content.split("|");
+		for(var i=0;i<contents.length;i++){
+			var cont = JSON.parse(contents[i]);
+			centArr[cont.time] = cont;
+			timeArr.push(cont.time);
+		};
+
+		$("#showvideo")[0].addEventListener("ended",function(){
+			$("#effect").html("");
+			clearInterval(timerPre);
+		});
+		timerPre = setInterval(videoPlay,100,timeArr,centArr);
+	}
+
+}
+
+/*********实现播放时候添加文字的效果******/
+function videoPlay(timeArr,centArr){
+	var current = $("#showvideo")[0].currentTime.toFixed(1);
+	for(var x=0;x<timeArr.length;x++){
+		if(current == timeArr[x] ){
+			var cont = centArr[timeArr[x]];
+			var p = "<p class='animated "+cont.animal+"' style='"+cont.contxt+"'>"+cont.text+"</p>";
+			$("#effect").html(p);
+			if($("#effect>p").html()){
+				$("#effect>p").css("font-size",cont.fontSize*0.8+"px");
+				var t = setInterval(function () {
+					$("#effect>p").removeClass(cont.animal);
+					var aclass = cont.animal+"MyOut";
+					$("#effect>p").addClass(aclass);
+					clearInterval(t);
+				},2000);
+			}
+		}
+	}
+}
+</script>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>管理</title>
+</head>
+<style>
+	@font-face {
+		font-family: 'iconfont';
+		src: url('//at.alicdn.com/t/font_1473840356_3674994.eot'); /* IE9*/
+		src: url('//at.alicdn.com/t/font_1473840356_3674994.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+		url('//at.alicdn.com/t/font_1473840356_3674994.woff') format('woff'), /* chrome、firefox */
+		url('//at.alicdn.com/t/font_1473840356_3674994.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+		url('//at.alicdn.com/t/font_1473840356_3674994.svg#iconfont') format('svg'); /* iOS 4.1- */
+	}
+	/*******全局css********/
+	html,body{font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";font-style: normal;color: #595957;}
+	.videobody{width: 100%; height: 100%;padding: 0px 20px 30px;}
+	.shHender{height: 60px;border-bottom: 1px solid #dcdddd;}
+	.shti{padding-top: 20px;display: inline-block;}
+	.fi{color: #dcdddd;}
+
+	/*******顶部css********/
+	.shHend{float: right;clear: both;margin-top: 15px;}
+	.openA{color: #595957;text-decoration: underline;cursor: pointer;margin-right: 20px;}
+	.openA:hover{color:#39b9f2;}
+	.obtn{height:30px; outline:none; color: #ff5c54;background: white;border: 1px solid #FF5C54;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;}
+	.dBtn:hover{background: #FF5C54;color: white;}
+	.dBtn{width: 100px;margin-right:15px;}
+	.cancel{width: 100px;background: #EFEFEF;border: 1px solid #EFEFEF;color: #595957;}
+	.cancel:hover{background: #DCDDDD;color:black;}
+
+	.ownCent{height: 550px;padding-top:30px;overflow-y: auto;}
+	.ownList{width: 150px;	display: inline-block;margin-right: 20px;position: relative;}
+	.ownText{height: 50px;padding-top: 10px;}
+	.ownImg{position: relative;width: 150px;	width: 150px;}
+	.ownText>span{display: inline-block;	width: 150px;position: relative;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;}
+	.closei{position: absolute;z-index: 100;color: #ff5c54;cursor: pointer;top: -10px;right: -13px;	width: 20px;height: 20px;background: white;border-radius: 50%;}
+	.ownList>i{font-size: 18px;}
+
+	.ownzhe{position: absolute;height: 150px;width: 150px;z-index: 100; background: rgba(0,0,0,0.5);text-align:center;}
+	.ownzhe>span{color: white; position: relative;top: 60px;}
+</style>
+<body>
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+	<div id="videoCont" class="videobody">
+		<div class="shHender">
+			<span class="shti fi">开幕式</span>
+			<span class="shti fi">></span>
+			<span class="shti fi">开场视频设置</span>
+			<span class="shti">></span>
+			<span class="shti">个人素材库管理</span>
+			<div class="shHend">
+				<button id="vwan" class="obtn dBtn">完成</button>
+			</div>
+		</div>
+
+
+		<div class="ownCent">
+			<?php $own = $data['ownVideo']; foreach ($own as $rows) {?>
+			<div class="ownList" dic="<?php echo $rows['video_id']?>">
+				<i class="iconfont closei">&#xe679;</i>
+				<div class="ownImg">
+					<img src="<?php echo $rows['video_cover']?>" height="150" width="150">
+				</div>
+				<div class="ownText">
+					<span><?php echo $rows['video_name']?></span>
+				</div>
+			</div>
+			<?php }?>
+
+			<?php $noOwn = $data['noOwnVideo']; foreach ($noOwn as $noRows) {?>
+			<div class="ownList">
+				<div class="ownImg">
+					<div class="ownzhe">
+						<span>当前视频已被使用</span>
+					</div>
+					<img src="<?php echo $noRows['video_cover']?>" height="150" width="150">
+				</div>
+				<div class="ownText">
+					<span><?php echo $noRows['video_name']?></span>
+				</div>
+			</div>
+			<?php }?>
+		</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+$().ready(function(){
+	$(".closei").bind("click",function () {
+		var obj = $(this);
+		var video_id = obj.parent().attr("dic");
+		popupalert('确定删除视频?','alert',function () {
+			$.ajax({
+				type:'POST',
+				url: "/application/video/delOwnVideo",
+				datatype:"JSON",
+				data:{"video_id":video_id},
+				success: function(ret){
+					ret=JSON.parse(ret);
+					if(ret.result = '0'){
+						var callback =function(){
+							window.location.reload();
+						}
+						popupalert('删除成功！','message',callback);
+					}
+
+				},
+				error:function(e){
+					var callback =function(){
+						window.location.reload();
+					}
+					popupalert('网络错误','error',callback);
+				}
+		});
+		});
+	});
+
+	$("#vwan").click(function(){
+		var sequence = $("#sequence").val();
+		window.location = "/application/video/index?sequence="+sequence;
+	})
+});
+</script>
+</html>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

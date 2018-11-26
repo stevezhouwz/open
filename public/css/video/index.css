@@ -1,0 +1,117 @@
+@CHARSET "UTF-8";
+/*******全局css********/
+html,body{font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";font-style: normal;color: #595957;}
+.videobody{width: 100%; height: 100%;padding: 0px 20px 30px;}
+.shHender{height: 60px;border-bottom: 1px solid #dcdddd;}
+.shti{padding-top: 20px;display: inline-block;}
+.fi{color: #dcdddd;}
+
+/*******顶部css********/
+.shHend{float: right;clear: both;margin-top: 15px;}
+.openA{color: #595957;text-decoration: underline;cursor: pointer;margin-right: 20px;}
+.openA:hover{color:#39b9f2;}
+.obtn{height:30px; outline:none; color: #ff5c54;background: white;border: 1px solid #FF5C54;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;}
+.dBtn:hover{background: #FF5C54;color: white;}
+.dBtn{width: 100px;margin-right:15px;}
+.cancel{width: 100px;background: #EFEFEF;border: 1px solid #EFEFEF;color: #595957;}
+.cancel:hover{background: #DCDDDD;color:black;}
+
+/*******vue.js********/
+[v-cloak] {display: none;}
+
+.vNavCont{height: 88px; padding-top: 20px;}
+.vnavBtn{cursor:pointer; border:1px solid #ff5c54;height: 40px;width: 200px;text-align: center;padding-top: 6px;font-size: 16px;float: left;overflow: hidden;}
+.left{
+    border-bottom-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-bottom-left-radius: 20px;
+	-o-border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+	-webkit-border-top-left-radius: 20px;
+	-moz-border-top-left-radius: 20px;
+	-o-border-top-left-radius: 20px;
+}
+.right{
+    border-bottom-right-radius: 20px;
+	-webkit-border-bottom-right-radius: 20px;
+	-moz-border-bottom-right-radius: 20px;
+	-o-border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+	-moz-border-top-right-radius: 20px;
+	-o-border-top-right-radius: 20px;
+
+}
+.active{background: #ff5c54;color:white;}
+.textTi{height: 40px;padding-top: 8px;padding-left: 7px;clear: both;display: inline-block;}
+.textTi span{font-size: 12px;}
+.textTi i{color: #ff5c54;}
+.videoKu{height: 400px;overflow-y: auto;}
+
+/*******视频列表css********/
+.videoWList{width: 150px;	margin-right: 20px;float: left;overflow: hidden;}
+.videoWImg{position: relative;width: 150px;width: 150px;}
+.videoW{position: absolute;left:88px;top: -2px;}
+.videoRadio{height: 50px;padding-top: 10px;}
+.videoRadio span{display: inline-block;width: 124px;position: relative;top: 2px;text-overflow: ellipsis;white-space: nowrap;	overflow: hidden;}
+
+/*******遮罩css********/
+.videoWZhe{position: absolute;height: 150px;width:150px; background: rgba(252, 92, 84, 0.8);z-index: 9;padding-top: 50px;display:none;text-align: center;}
+.videoWBtn{display: block;margin: auto;height: 30px;width: 100px;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;border: 1px solid white;background: none; color: white;margin-top: 10px;}
+
+/*******单选css********/
+.videoRadio input{display:none;}
+.videoRadio input[type="radio"]+ i {color: #ff5c54;font-weight: normal;font-size: 20px;cursor: pointer;position: relative;  top: -2px;}
+.videoRadio input[type="radio"]+ i:after {content: attr(before);}
+.videoRadio input[type="radio"]:checked+ i:after {content: attr(after);position: relative;  top: 2px;}
+
+/***********个人素材库*************/
+.wvideoCont{width: 100%;height: 465px;overflow-y: auto;}
+.up_video{float: left;	margin-right: 20px;width: 150px;height: 150px; border: 1px solid #dddddd;text-align: center;cursor: pointer}
+.up_cont{padding-top: 40px;color: #989898;}
+.up_cont>i{font-size: 20px;}
+.add_span{font-size: 16px;font-weight:100;}
+
+.ow_upvideo{width: 150px; border: 1px solid #dddddd;display: inline-block;}
+#files{display: none}
+.videoSZhe{position: absolute;top: -1px;height: 150px;width:150px; background: rgba(0,0,0,0.5);z-index: 9;}
+.ing{color: white;	width: 100%;position: absolute;left: 0;top: 0;text-align: center;line-height: 150px;}
+.in_block{ display: inline-block; cursor: pointer; vertical-align: top; width: 36px;color: white;}
+.in_block i{font-size: 24px;}
+.in_block p{font-size: 12px;display: none;}
+.in_block  .pre{position: relative;top:2px;}
+
+.payZhe{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1000;
+	display: none;
+}
+.payCont{
+	width: 280px;
+	height: 170px;
+	background: white;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -140px;
+	margin-top: -85px;
+	border-radius: 3px;
+}
+.payCloseCont{text-align: right;padding: 10px;}
+.payCloseCont i{cursor: pointer;}
+.payText{text-align: center;}
+.payText .pcolor{font-size: 12px;	color: #ff4343;line-height: 3;}
+.payBtn{
+	border: 1px solid #FF5C54;
+	background: #FF5C54;
+	color: white;
+	width: 100px;
+	height: 30px;
+	border-radius: 3px;
+	margin-top: 20px;
+}

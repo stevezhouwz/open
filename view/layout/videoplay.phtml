@@ -1,0 +1,38 @@
+
+<style>
+.myyulan{ clear: both;display: block;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);}
+.myship{height: 320px;width: 450px;position: relative;left: 50%;top: 50%;margin-left: -226px;margin-top: -160px;}
+.yulani{text-align: right;width: 470px;}
+.iclose{color: white;cursor: pointer;}
+.openvideo{height: 320px;width: 450px;background: black;}
+#myyulan{display:none;}
+</style>
+<section id="myyulan" class="myyulan">
+	<div class="myship">
+		<div class="yulani" >
+			<i id="iclose" class="iconfont iclose">&#xe654;</i>
+		</div>
+		<div id="myvideo" >
+			<video  data-proxyload2 id="myvideos" class="openvideo"  src=""  preload="auto" autoplay="autoplay" >
+			</video>
+		</div>
+	</div>
+</section>
+
+<script>
+$("#iclose").click(function(){
+	$("#myvideos").removeAttr("src");
+	$("#myyulan").hide();
+});
+function playVideo(src){
+   $("#myyulan").show();
+//	var srcArr =  src.split('.');
+//	var ds = srcArr[srcArr.length - 2] + "_preview";
+//	srcArr.splice(srcArr.length - 2,1,ds);
+//	var src2 = srcArr.join('.');
+   $(".openvideo").attr("src",src);
+//	ProxyLoad2({
+//		url: 'http://localhost:3000',
+//	});
+}
+</script>

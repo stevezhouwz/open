@@ -1,0 +1,88 @@
+@CHARSET "UTF-8";
+/*******全局css********/
+html,body{font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";font-style: normal;color: #595957;}
+.shbody{width: 100%; height: 100%;padding: 0px 20px 30px;}
+.shHender{height: 60px;border-bottom: 1px solid #DCDDDD;}
+.shti{padding-top: 20px;display: inline-block;}
+.fi{color: #dcdddd;}
+
+/*******顶部css********/
+.shHend{float: right;clear: both;margin-top: 15px;}
+.openA{color: #595957;text-decoration: underline;cursor: pointer;margin-right: 20px;}
+.openA:hover{color:#39b9f2;}
+.obtn{height:30px; outline:none; color: #ff5c54;background: white;border: 1px solid #FF5C54;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;}
+.dBtn:hover{background: #FF5C54;color: white;}
+.dBtn{width: 100px;margin-right:15px;}
+.cancel{width: 100px;background: #EFEFEF;border: 1px solid #EFEFEF;color: #595957;}
+.cancel:hover{background: #DCDDDD;color:black;}
+
+/*******选择时长css********/
+.setNum{height: 88px;padding-top: 24px;}
+.select{display: inline-block;position: relative;left: 10px;}
+.select select{background:rgba(255, 255, 255, 0); width: 155px;height: 36px;border: 1px solid #dcdddd;padding-left: 10px;appearance:none;-webkit-appearance:none;-moz-appearance:none;-o-appearance:none;}
+.select select::-ms-expand { display: none; }
+.down{z-index:-1; cursor: context-menu;border: 1px solid #EFEFEF;width: 32px;height: 32px;position: absolute;left: 121px;top: 2px;background: #EFEFEF;}
+.down i{position: relative;left: 7px;top: 4px;}
+.shakeCont{overflow-y: scroll;height: 400px;}
+
+/*******默认css********/
+.shakeList{position: relative; width: 150px; margin-right: 20px; float: left; overflow: hidden;}
+.shakeImg{width: 150px;height: 150px;}
+.shakeRadio{height: 50px;padding-top: 10px;}
+.shakeRadio span{display: inline-block;
+    width: 124px;
+    position: relative;
+    top: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;}
+
+/*******单选css********/
+.shakeRadio input{display:none;}
+.shakeRadio input[type="radio"]+ i {color: #ff5c54;font-weight: normal;font-size: 20px;cursor: pointer;position: relative;  top: -2px;}
+.shakeRadio input[type="radio"]+ i:after {content: attr(before);}
+.shakeRadio input[type="radio"]:checked+ i:after {content: attr(after);position: relative;  top: 2px;}
+
+/*******默认遮罩css********/
+.shakeZhe{position: absolute;height: 150px;width:150px; background: rgba(252, 92, 84, 0.8);z-index: 9;padding-top: 50px;display:none;}
+.shakeBtn{margin: 0 auto;width: 40px;background: none;color: white;text-align: center;cursor: pointer;}
+.shakeBtn i{font-size: 24px;}
+.shakeBtn p{display: none; font-size: 12px;}
+/*******vue.js********/
+[v-cloak] {display: none;}
+
+.vNavCont{height: 60px; padding-top: 20px;}
+.vnavBtn{cursor:pointer; border:1px solid #ff5c54;height: 40px;width: 200px;text-align: center;padding-top: 6px;font-size: 16px;float: left;overflow: hidden;}
+.left{
+    border-bottom-left-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-bottom-left-radius: 20px;
+    -o-border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-top-left-radius: 20px;
+    -o-border-top-left-radius: 20px;
+}
+.right{
+    border-bottom-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -moz-border-bottom-right-radius: 20px;
+    -o-border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -moz-border-top-right-radius: 20px;
+    -o-border-top-right-radius: 20px;
+
+}
+.active{background: #ff5c54;color:white;}
+.textTi{height: 40px;padding-top: 8px;padding-left: 7px;clear: both;display: inline-block;}
+.textTi span{font-size: 12px;}
+.textTi i{color: #ff5c54;}
+#files{display: none;}
+.up_video{float: left; margin-right: 20px;width: 150px;height: 150px;border: 1px solid #dddddd;text-align: center;cursor: pointer;padding-top: 40px;color: #989898;}
+.customDown{padding-top: 27px;width: 100%;height: 465px;overflow-y: auto;}
+.up_cont i{font-size: 20px;}
+.add_span{font-size: 16px;font-weight: 100;}
+
+.shakeSZhe{position: absolute;top: -1px;height: 150px;width:150px; background: rgba(0,0,0,0.5);z-index: 9;}
+.shakeSZhe .ing{color: white;	width: 100%;position: absolute;left: 0;top: 0;text-align: center;line-height: 150px;}

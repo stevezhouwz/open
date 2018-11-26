@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta charset="utf-8">
+    <title>摇一摇页面</title>
+    <script>
+        window.top.postMessage({
+                action : "self-adapt",
+                info : 1
+            },
+            '*'
+        );
+    </script>
+    <script type="text/javascript" src="/js/common/jquery-2.1.4.min.js"></script>
+</head>
+<link rel="stylesheet" href="/mobile/font/iconfont.css"  />
+<link rel="stylesheet" href="/mobile/css/mobile.css"  />
+<body>
+<div class="my_body">
+    <div class="hander">
+        <div class="img1">
+        </div>
+    </div>
+    <div class="zhong" >
+        <div class="img2">
+        </div>
+        <div class="zhong_i">
+            <i class="icon iconfont">&#xe62a;</i>
+        </div>
+    </div>
+</div>
+<div class="shake_box">
+    <div class="shakTop"><span></span></div>
+    <div class="shakBottom"><span>摇一摇</span></div>
+</div>
+<div class="startOpen">
+    <span>开幕式未启动</span>
+</div>
+
+<input type='hidden' id="total" name='total' value='<?php echo $data['total'];?>' />
+<input type='hidden' id="module_status" name='module_status' value='<?php echo $data['openid'];?>' />
+<input type='hidden' id="comp_id" name='compId' value='<?php echo $data['comp_id'];?>' />
+<input type='hidden' id="meet_id" name='meetId' value='<?php echo $data['meet_id'];?>' />
+<input type='hidden' id="sequence" name='sequence' value='<?php echo $data['sequence'];?>' />
+<input type='hidden' id="setNum" name='setNum' value='<?php echo $data['num'];?>' />
+<input type="hidden" id="url_wslist" value="<?php echo $data['websocket_list']?>">
+<input type='hidden' id="sort" name='sort' value='<?php echo $data['sort'];?>' />
+</body>
+<script type="text/javascript" src="<?php echo $data['back'];?>"></script>
+<script src="/js/ws/PlumeWS.js"></script>
+<script src="/js/ws/openEvent.js"></script>
+<script type="text/javascript" src="/mobile/js/mobile.js"></script>
+</html>

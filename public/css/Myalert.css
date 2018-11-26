@@ -1,0 +1,70 @@
+
+.iconfont{font-family:"iconfont";font-size:16px;font-style:normal;}
+
+.hd-button{background:#FB6574;font-size:14px;color:white;border: none;width:180px;height:40px;outline:none;margin-left:10px;margin-right:10px;}
+.button-red{background:#ff5c54;}
+.button-blue{background:#55CCD9;}
+.button-disabled{background:#D8D8D8;}
+.button-red:hover{background:#DB4D6C;}
+.button-blue:hover{background:#42BCBC;}
+
+.bt-sub-sure{background:#ff5c54;}
+.bt-sub-sure:hover{background:#e73f34;}
+.bt-sub-cancel{background:#efefef;color:#595957}
+.bt-sub-cancel:hover{background:#dcdddd;}
+
+.c-success{color:#70D445}
+.c-link{color:#39B9F2}
+.c-warn{color:#fe8a29}
+.c-danger{color:#E73F34}
+.c-main{color:#FF5C54}
+
+p.p-regular{font-weight:normal;}
+p.p-bold{font-weight:bold;}
+p.p-light{font-weight:lighter;}
+
+p.p-normal{font-size:12px;}
+
+p.mainText{color:#595957}
+p.subText{color:#989898}
+p.borderLine{color:#dcdddd}
+p.tabPad{color:#EFEFEF}
+.pop-bt{font-size:12px;color:white;width:100px;height:24px;outline:none;margin-left:5px;margin-right:5px;border:none;border-radius: 5px;}
+
+div.popFrame{border:solid 1px #dcdddd}
+
+.pop-fade{
+    position:fixed;top:0;bottom:0;left:0;right:0;text-align:center;z-index:9999;background:rgba(0, 0, 0, 0.5);display:none;
+    font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";
+    font-style: normal;
+}
+.pop-content{position:relative;top:150px;margin:0 auto;width:280px;padding-top: 15px;padding-bottom: 25px;background:white;}
+.pop-icon{color:#55CCD9;font-size:32px;}
+.pop-close{position:absolute;top:10px;right:15px;font-size:12px;color:#E2E3E3;cursor:pointer;}
+.pop-body{position:relative;}
+.pop-hint{position:relative;display:block;font-size:30px;text-align: center;}
+.pc-text{position:relative;font-size:12px;}
+.pop-buttons{position:relative;font-size:0px;text-align: center;}
+.pop-row>*{position:relative;display:inline-block;vertical-align: top;}
+
+
+.hf-ct{font-size:20px;padding:60px 0;}
+
+.ac-text{margin-top: 7px;margin-bottom: 15px;}
+
+.msgContent{width:200px;padding:6px 0px; box-shadow: -1px -1px 5px #dcdddd,1px 1px 5px #dcdddd;}
+.msgHint{font-size:25px;margin-right: 4px;}
+.mc-text{margin-top:8px;}
+
+
+.nc-text{margin-top: 25px;margin-bottom: 20px;}
+
+.loadContent{padding-bottom: 55px;}
+.lc-text{margin-top: 45px;margin-bottom: 5px;}
+.loading{position:relative;width:8px;height:8px;margin-right:6px; background:#ff5c54;}
+.loading.l-last{margin-right:0px}
+
+.normalMsgContent{position:fixed;background:white;z-index:9999}
+@media only screen and (max-width:1400px){
+
+}

@@ -1,0 +1,149 @@
+<style>
+.shakeWTwo{clear: both;display: block;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);}
+.TwoWCont{width: 450px;height: 320px;background: url("/img/open/two.jpg");background-size: 100% 100%;position: relative;left: 50%;top: 50%;margin-left: -225px;margin-top: -160px;}
+.closeTwoDiv{width: 475px; text-align: right;}
+.closeTwoDiv i{color: white;font-size: 20px;cursor: pointer;position: relative;top: -23px;}
+
+#shakeWTwo{display: none;}
+/**********摇一摇css***********/
+.yaoTwocont{position: relative;margin: auto;height: 70px;}
+.wTwobody{margin: 90px auto;text-align: center;}
+.wTwobai{color: #fbc82b;font-size: 22px;font-weight: bold;width: 100px;margin: auto;}
+.baiimgTwo{color: #fbc82b;font-size: 22px;font-weight: bold;width: 100%;}
+[v-cloak]{display: none;}
+.yaoimgTwo{position: relative;margin: auto;height: 70px;width: 300px;}
+.wtnospan{font-size: 0.65cm;font-weight: bold;color: #fbc82b;}
+</style>
+<section id="shakeWTwo" class="shakeWTwo">
+	<div class="TwoWCont" >
+		<div class="closeTwoDiv" >
+			<i class="iconfont wTwoclose">&#xe654;</i>
+		</div>
+		<div class="wTwoshake">
+			<div class="wTwobody" v-model="radioTwoType">
+				<h1 class="wTwobai" v-show="radioTwoType == 0" v-cloak></h1>
+    			<div class="yaoTwocont" v-show="radioTwoType == 0" v-cloak>
+          			<span id="spanTwoText" class='wtnospan' v-model="spanTwoText">{{spanTwoText}}</span>
+    			</div>
+    			<h1 class="baiimgTwo" v-show="radioTwoType == 1"  v-cloak></h1>
+    			<div class="yaoimgTwo" v-show="radioTwoType == 1"  v-cloak>
+              		<img class='imgTwoLogo' width="300" height="70" src="{{spanImg}}" v-model="spanImg"/>
+    			</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+shakeWTwo = new Vue({
+	el:"#shakeWTwo",
+	data:{
+		radioTwoType:0,
+		spanTwoText:"讯鸟年度盛会",
+		spanImg:"/img/open/meinv.jpg",
+		
+	},
+});
+$().ready(function(){
+	
+	$(".closeTwoDiv i").click(function(){
+        if($("#music_url").val() || $("#checkMusic").val()) {
+            $(".preAudio")[0].pause();
+        }
+		$("#shakeWTwo").hide();
+		if(shakeWTwo.radioTwoType == "0"){
+			$(".wTwobai").html("");
+			clearTimeout(ttwo);
+			return tx=0;
+		}else{
+			$(".baiimgTwo").html("");
+			clearTimeout(timrTwo);
+			return m=0;
+		}
+	})
+	clickMoveTwo();
+});
+
+function clickMoveTwo(){
+	$("#swnoShakeTwo").click(function(){
+		var shakeUrl = $(this).parent().parent().next().find("input[type='radio']").val();
+		var sequence = $("#sequence").val();
+		
+		$.ajax({
+            type:'POST',
+            url: "/application/index/searchWno",
+            datatype:"JSON",
+            data:{"sequence":sequence,"shakeUrl":shakeUrl},    
+            success: function(ret){
+                ret=JSON.parse(ret);
+                if(ret.result==0){
+                	shakeWTwo.radioTwoType = ret.shake_type;
+                	shakeWTwo.spanImg = ret.shake_img;
+                	shakeWTwo.spanTwoText = ret.shake_text;
+            		
+                	$("#shakeWTwo").show();
+            		if(shakeWTwo.radioTwoType == "0"){
+            			var bai = $(".wTwobai").html();
+            			if(bai== "100%" || bai== ""){
+            				moveWnoTwo($("#checkMusic").val());
+            			}
+            		}else{
+            			var bai = $(".baiimgTwo").html();
+            			if(bai== "100%" || bai== ""){
+            				$(".zheimg").css("width","300px");
+            				moveWnoimgTwo($("#checkMusic").val());
+            			}
+            		}
+                }
+            },
+            error:function(e){
+                alert("网络错误");
+            }     
+    	});
+		
+	});
+}
+
+var tx=0;
+function addWnoTwo(tx){
+	$("#spanTwoText").css("opacity",tx/100);
+	var bai = Math.round(tx*100 / 100);
+	$(".wTwobai").html(bai+"%");
+}
+function moveWnoTwo(music_url){
+    if(music_url) {
+        $(".preAudio").attr("src", music_url);
+        $(".preAudio")[0].load();
+        $(".preAudio")[0].play();
+    }
+	if(tx>100){
+		return t=0;
+	}
+	if(tx/100<=1){
+		ttwo = setTimeout("moveWnoTwo()",10)
+		addWnoTwo(tx);
+	    tx++;
+		}
+}
+
+var m=0;
+function addimgTwo(m){
+	$(".imgTwoLogo").css("opacity",m/100);
+	var bai = Math.round(m*100 / 100);
+	$(".baiimgTwo").html(bai+"%");
+}
+function moveWnoimgTwo(music_url){
+    if(music_url) {
+        $(".preAudio").attr("src", music_url);
+        $(".preAudio")[0].load();
+        $(".preAudio")[0].play();
+    }
+	if(m>100){
+		return m=0;
+	}
+	if(m/100<=1){
+		timrTwo = setTimeout("moveWnoimgTwo()",10)
+		addimgTwo(m);
+	    m++;
+		}
+}
+</script>

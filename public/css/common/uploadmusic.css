@@ -1,0 +1,96 @@
+@CHARSET "UTF-8";
+
+#upload-div {
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+display:none;
+overflow-y:auto;
+z-index:100;
+}
+
+.uploadbox {
+width:480px;
+height:200px;
+background-color:#FFF;
+text-align:center;
+box-shadow:0 0 8px #DADADA;
+position:relative;
+top: 30%;
+z-index:999;
+margin:0 auto;
+border: 1px solid #DADADA;
+}
+
+.uploadbox-title {
+position:relative;
+color:#989898;
+font-size:20px;
+text-align:left;
+margin-bottom:20px;
+border-bottom:1px solid #efefef;
+padding:16px 0 15px 40px;
+}
+
+.iconfont {
+font-family:iconfont;
+font-size:16px;
+font-style:normal;
+}
+
+.iconfont2 {
+float:right;
+font-size:20px!important;
+margin-right:30px;
+color:#989898;
+cursor:pointer;
+}
+
+.uploadprecess {
+width:400px;
+position:relative;
+top:0;
+height:12px;
+border-radius:6px;
+border:solid #FF5054 1px;
+z-index:10;
+margin:0 auto 20px;
+padding:1px;
+}
+
+#upload-div .retrybtn {
+width:100px;
+height:30px;
+border:solid 1px #dcdddd;
+color:#dcdddd;
+outline:none;
+line-height:20px;
+background-color:#FFF;
+display:none;
+}
+
+#upload-div .close-upload {
+width:140px;
+height:40px;
+border-radius:4px;
+margin-top:20px;
+}
+
+.uploadbox #cancelbtn {
+width:100px;
+height:30px;
+border:none;
+color:#989898;
+outline:none;
+line-height:20px;
+background-color:#efefef;
+}
+.uploadprecess-bar{
+height: 8px;
+border-radius: 4px;
+background-color: #FF4343;
+width: 0;
+}

@@ -1,0 +1,73 @@
+/*******全局css********/
+html,body{font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";font-style: normal;color: #595957;}
+.shbody{width: 100%; height: 100%;padding: 0px 30px 30px;}
+.shHender{height: 60px;border-bottom: 1px solid #dcdddd;}
+.shti{padding-top: 20px;display: inline-block;}
+.fi{color: #dcdddd;}
+
+/*******顶部css********/
+.shHend{float: right;clear: both;margin-top: 15px;}
+.openA{color: #595957;text-decoration: underline;cursor: pointer;margin-right: 20px;}
+.openA:hover{color:#39b9f2;}
+.obtn{height:30px; outline:none; color: #ff5c54;background: white;border: 1px solid #FF5C54;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;}
+.dBtn:hover{background: #FF5C54;color: white;}
+.dBtn{width: 100px;margin-right:15px;}
+.cancel{width: 100px;background: #EFEFEF;border: 1px solid #EFEFEF;color: #595957;}
+.cancel:hover{background: #DCDDDD;color:black;}
+
+.customCont{font-size: 0;padding-top: 30px;}/**除去display: inline-block;间隙 */
+.customRight{height: 300px;width: 50%;display: inline-block; vertical-align: top;padding: 0 20px;font-size: 14px;}
+.customBtn{width: 430px;height: 40px;color: #595957;background: #EFEFEF;border: 1px solid #EFEFEF;}
+.customTi i{color: #ff4343;}
+.customTi{font-size: 12px;padding-top: 3px;}
+
+/*******单选css********/
+.cuInput{display: none;}
+.customInput input[type="radio"]+ i {position: relative;color: #ff5c54;font-weight: normal;font-size: 20px;cursor: pointer;}
+.customInput input[type="radio"]+ i:after {content: attr(before);}
+.customInput input[type="radio"]:checked+ i:after {content: attr(after);}
+.customIn_block{display: inline-block;vertical-align: top;width: 20px;height: 20px;border: 1px solid #CCC;background-color: white;}
+.colorCont i{font-size: 12px;color: #666;}
+.ml3{margin-left: 3px;}
+.ml40{margin-left: 40px;}
+.customInput{margin-top: 25px;}
+.inputText{border: 1px solid #dcdddd; height: 36px; width: 166px; padding-left: 10px; color: #dcdddd; margin-left: 25px;}
+.pl108{padding-left: 108px; word-break: break-all;width: 430px;}
+.upBtn{color: #595957;background: #DCDDDD; border: 1px solid #DCDDDD;width: 314px;height: 40px;position: relative; left: 25px;}
+.pickZhe{position: absolute;z-index: 10; width: 40px;height: 20px;display: none;}
+.pickcont{display: inline-block;width: 40px;height: 20px;background: #f1f1f1;cursor: default;position: relative;}
+.colorh{color: #ddd;}
+
+/*************自定义摇一摇**************/
+.customLeft{height: 300px;width: 430px;display: inline-block;vertical-align: top;font-size: 14px;background-image: url("/img/open/custombg.jpg");background-size: 100% 100%;}
+.customSpeed{padding-top: 95px;padding-left: 20px;}
+.customLoading{height: 40px;width: 100%;text-align: center;font-size: 26px;}
+.customYao{height: 10px;border-radius: 20px;}
+.customBorder{border: 2px solid white;height: 20px;width: 390px;padding: 3px;border-radius: 40px;}
+
+.customTextCont{padding-top: 80px; text-align: center;}
+.textLoading{height: 40px; width: 100%; text-align: center; font-size: 26px;}
+.textCont{font-size: 32px;}
+[v-cloak]{display: none;}
+
+.customImgCont{padding-top: 80px; text-align: center;}
+.imgLoading{height: 40px; width: 100%; text-align: center; font-size: 26px;color: white;}
+
+.uploadZhe{display: none;clear: both;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(153, 153, 153, 0.5);}
+.uploadBox{width: 400px;min-height: 516px;height: 516px;background-color: #fff;position: absolute;
+    left: 50%;top: 50%;margin-left: -200px;margin-top: -258px;box-shadow: 4px 4px 8px #e8e8e8,-4px -4px 8px #e8e8e8;border-radius: 3px;}
+.uploadBoxTitle{width: 100%;height: 60px;border-bottom: 1px solid #efefef;line-height: 60px;text-indent: 20px;color: #000;}
+.spanTitle{font-size: 20px;color: #989898;}
+.spanNotice{color: #b8b7b5;font-size: 14px;margin-left: 20px;}
+.uploadBoxTitle .iconClose{float: right;font-size: 20px !important;margin-right: 30px;color: #989898;cursor: pointer;}
+.uploadContent{text-align: center;height: 400px;}
+.uploadC{display: inline-block;width: 118px;height: 120px;border: solid 1px #e5e5e5;background: white;color: #9a9b96;font-size: 14px;outline: none;position: relative;padding-top: 35px;top: 147px; cursor: pointer; }
+#uploadPicFile, #uploadPicFileTwo{display: none;}
+.uploadImgSrcCont{width: 80%;margin: 0 auto;height: 400px;padding: 20px; }
+.submintBtn{border: solid 1px #ff4343;background: #ff4343;color: #fff;font-size: 16px;outline: none;width: 120px;height: 40px;border-radius: 5px;display: none;}
+.uploadImgZhe{position: absolute;width: 280px;height: 360px;background: rgba(0,0,0,0.5);color: white;padding-top: 166px;  }
+.loadingCont{position: absolute;width: 170px;height: 170px;background: rgba(0,0,0,0.5);color: white;left: 50%;top: 50%;margin-left: -85px;margin-top: -85px;padding-top: 73px;display: none;z-index: 9; }
+.uploadFooter{text-align: center;}
+.myloading{display:inline-block; position:relative;width:8px;height:8px;margin-right:6px; background:#ff5c54;}
+.myloading.l-last{margin-right:0px}
+.farst{margin-top: 40px;}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/colpick.css" type="text/css" />
+    <link rel="stylesheet" href="/css/index/customshake.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <script src="/js/common/colpick.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>摇一摇开幕设置</title>
+</head>
+<body>
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="storage" value="<?php echo $data['storage_js']?>">
+<input type="hidden" id="project" value="<?php echo $data['project']?>">
+<input type="hidden" id="module" value="<?php echo $data['module']?>">
+<input type="hidden" id="feature" value="<?php echo $data['feature']?>">
+<input type="hidden" id="env" value="<?php echo $data['env']?>">
+<input type="hidden" id="custom_bg" value="<?php echo $data['custom_bg']?>">
+<input type="hidden" id="custom_pattern" value="<?php echo $data['custom_pattern']?>">
+<input type="hidden" id="custom_color" value="<?php echo $data['custom_color']?>">
+<input type="hidden" id="shake_text" value="<?php echo $data['shake_text']?>">
+<input type="hidden" id="shake_text_color" value="<?php echo $data['shake_text_color']?>">
+<input type="hidden" id="shake_img_url" value="<?php echo $data['shake_img_url']?>">
+<div class="shbody" id="upShakeV">
+    <div class="shHender">
+        <span class="shti fi">开幕式</span>
+        <span class="shti fi">></span>
+        <span class="shti fi">摇一摇开幕设置</span>
+        <span class="shti">></span>
+        <span class="shti">自定义</span>
+        <div class="shHend">
+            <button id="preview" class="obtn dBtn">预览</button>
+            <button id="saveData" class="obtn dBtn">保存</button>
+            <button class="obtn cancel">取消</button>
+        </div>
+    </div>
+    <div class="customCont">
+        <div class="customLeft">
+            <div class="customSpeed" v-show="inputVal == 1" v-cloak>
+                <div class="customLoading" v-model="progressColor" v-bind:style="{color:progressColor}"></div>
+                <div class="customBorder" v-model="progressColor" v-bind:style="{borderColor:progressColor}">
+                    <div class="customYao" v-model="progressColor" v-bind:style="{background:progressColor}"></div>
+                </div>
+            </div>
+            <div class="customTextCont" v-show="inputVal == 2" v-cloak>
+                <div class="textLoading" v-model="textColor" v-bind:style="{color:textColor}"></div>
+                <div class="textCont" v-model="textColor" v-bind:style="{color:textColor}" v-cloak>{{inputText}}</div>
+            </div>
+            <div class="customImgCont" v-show="inputVal == 3" v-cloak>
+                <div class="imgLoading"></div>
+                <img class="imgSrc" width="390" height="70" src="{{logo}}" v-model="logo">
+            </div>
+        </div>
+        <div class="customRight">
+            <button type="button" class="customBtn">选择背景图</button>
+            <div class="customTi">
+                <i class="iconfont">&#xe62e;</i>
+                <span>为保证最佳体验，请上传jpg/png的图片，尺寸大小建议1920*1080px</span>
+            </div>
+            <div class="customInput farst">
+                <input type="radio" name="customInputV" class="cuInput" v-model="inputVal" value="1">
+                <i class="iconfont cuRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span class="ml3">显示进度条</span>
+                <span class="ml40">选择颜色</span>
+                <div class="pickcont ml3">
+                    <div class="pickZhe"></div>
+                    <div id="picker" class="colorCont">
+                        <div class="customIn_block" v-model="progressColor" v-bind:style="{background:progressColor}"></div>
+                        <i class="iconfont">&#xe63d;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="customInput">
+                <input type="radio" name="customInputV" class="cuInput" v-model="inputVal" value="2">
+                <i class="iconfont cuRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span class="ml3">显示文字</span>
+                <input type="text" name="customText" class="inputText" maxlength="12" v-model="inputText"  value="{{inputText}}" v-cloak>
+                <span class="ml20">选择颜色</span>
+                <div class="pickcont ml3">
+                    <div class="pickZhe"></div>
+                    <div id="pickerText" class="colorCont">
+                        <div class="customIn_block" v-model="textColor" v-bind:style="{background:textColor}"></div>
+                        <i class="iconfont">&#xe63d;</i>
+                    </div>
+                </div>
+            </div>
+            <div class="customInput">
+                <input type="radio" name="customInputV" class="cuInput" v-model="inputVal" value="3">
+                <i class="iconfont cuRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span class="ml3">显示图片</span>
+                <button type="button" class="upBtn">更换图片</button>
+                <div class="customTi pl108">
+                    <i class="iconfont">&#xe62e;</i>
+                    <span>为保证最佳体验，请上传jpg/png格式的图片，尺寸大小建议在400*300px</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="file" id="uploadPicFile" accept=".jpg,.jpeg,.png">
+    <!-- 上传图片提示 -->
+    <div class="uploadZhe">
+        <div class="uploadBox">
+            <div class="uploadBoxTitle">
+                <span class="spanTitle">图片上传</span>
+                <span class="spanNotice">图片大小不超过10M</span>
+                <i class="iconfont iconClose">&#xe654;</i>
+            </div>
+            <div class="uploadContent">
+                <div class="loadingCont">
+                    <p>0%</p>
+                    <div class="myloading" ></div>
+                    <div class="myloading"></div>
+                    <div class="myloading l-last"></div>
+                </div>
+                <div class="ImgContent">
+                    <div class="uploadC" id="uploadPic">
+                        <i class="iconfont">&#xe658;</i>
+                        <p>上传图片</p>
+                    </div>
+                </div>
+            </div>
+            <div class="uploadFooter">
+                <button type="button" id="submint" class="submintBtn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="<?php echo $data['storage_js']?>"></script>
+<script type="text/javascript" src="/js/common/uploadpic.js"></script>
+<script type="text/javascript" src="/js/index/customshake.js"></script>
+</html>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

@@ -1,0 +1,93 @@
+@CHARSET "UTF-8";
+/*******全局css********/
+html,body{font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";font-style: normal;color: #333;}
+.shbody{width: 100%; height: 100%;padding: 0px 20px 30px;}
+.shHender{height: 60px;}
+.shti{padding-top: 20px;display: inline-block;}
+.fi{color: #dcdddd;}
+
+/*******顶部css********/
+.shHend{float: right;clear: both;margin-top: 15px;}
+.colorRed{color: #FF4343;}
+.openA{color: #595957;text-decoration: underline;cursor: pointer;margin-right: 20px;}
+.openA:hover{color:#39b9f2;}
+.obtn{height:30px; outline:none; color: #ff5c54;background: white;border: 1px solid #FF5C54;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;}
+.dBtn:hover{background: #FF5C54;color: white;}
+.dBtn{width: 100px;margin-right:15px;}
+.cancel{width: 100px;background: #EFEFEF;border: 1px solid #EFEFEF;color: #595957;}
+.cancel:hover{background: #DCDDDD;color:black;}
+
+/*******设置数量css********/
+.setNum{height: 85px;border-top:1px solid #DCDDDD;padding-top: 24px;}
+.setNum input{height: 36px;border: 1px solid #dcdddd;margin-left: 20px;padding-left: 10px;}
+.setNum i{color: #ff5c54;margin-left: 15px;margin-right: 10px;}
+.setNumti{font-size: 12px;color: #999;}
+
+.ti{width: 200px;position: relative;left: 105px; top: 5px;}
+.ti>i{font-size: 14px;margin-right: 0px;color: #fe8a29;}
+.ti span{font-size: 12px;color: #fe8a29;}
+/*******默认css********/
+.shakeList{width: 150px;display: inline-block;margin-right: 20px;}
+.shakeImg{width: 150px;width: 150px;position: relative;}
+.shakeRadio{height: 50px;padding-top: 10px;}
+.shakeRadio span{position: relative;top: -2px;}
+
+/*******单选css********/
+.shakeRadio input{display:none;}
+.shakeRadio input[type="radio"]+ i {color: #dcdddd;font-weight: normal;font-size: 20px;cursor: pointer;}
+.shakeRadio input[type="radio"]+ i:after {content: attr(before);color: #dcdddd;}
+.shakeRadio input[type="radio"]:checked+ i:after {content: attr(after);color: #ff5c54;}
+
+/*******默认遮罩css********/
+.shakeZhe{color: white;position: absolute;height: 150px;width:150px; background: rgba(252, 92, 84, 0.8);z-index: 9;padding-top: 48px;text-align: center;  display:none;}
+.shakeZhe i{font-size: 24px;}
+/*******自定义css********/
+.shakeWList{width: 150px;display: inline-block;margin-right: 20px;}
+.shakeWImg{position: relative;width: 150px;width: 150px;}
+.shakeW{position: absolute;left:88px;top: -2px;}
+
+/*******自定义遮罩css********/
+.shakeWZhe{position: absolute;top: -1px;height: 150px;width:150px; background: rgba(252, 92, 84, 0.8);z-index: 9;padding-top: 48px;text-align: center;color: white; display:none;}
+.shakeWZhe i{font-size:24px; }
+.in_block{display: inline-block;cursor: pointer;vertical-align: top;width: 36px;}
+.shakeWZhe p{font-size: 12px;}
+.in_block p{font-size: 12px;display: none;}
+.in_block .pre{position: relative;top:1px;}
+
+/**************摇一摇背景音乐**************/
+.musicContent{width: 100%;height: 80px;}
+.musicRadio{width: 110px; height: 50px;padding-top: 10px;display: inline-block;}
+.musicRadio span{position: relative;margin: 0 5px;top:-2px;}
+.musicRadio i{font-size: 20px;cursor: pointer;color: #dcdddd;}
+.width60{width: 60px;}
+.width130{width: auto;margin-right: 10px;}
+/*******单选css********/
+.musicRadio input{display:none;}
+.musicRadio input[type="radio"]+ i {color: #dcdddd;font-weight: normal;cursor: pointer;}
+.musicRadio input[type="radio"]+ i:after {content: attr(before);color: #dcdddd;}
+.musicRadio input[type="radio"]:checked+ i:after {content: attr(after);color: #ff5c54;}
+
+#One{cursor: pointer}
+.cBtn{border: 1px solid #FF5C54;background: #FF5C54;color: white;width: 100px;height: 30px;border-radius: 3px;}
+.blank{border: 1px solid #EFEFEF;background: #EFEFEF;color: #595957;}
+
+#musicFile{display: none;}
+.musicAudio{display: none;}
+.width130 span{text-overflow: ellipsis;white-space: nowrap;display: inline-block;width: 130px;overflow: hidden;top: 3px;}
+.musicRadio .up{color:#dcdddd;}
+.musicRadio .down{color:#ff5c54;}
+
+.uploadCont{width: 150px; height: 150px; border: 1px solid #ddd; text-align: center; padding-top: 42px;cursor: pointer;color:#989898;}
+.uploadCont i{font-size: 20px;}
+.music_bubble{
+    display: none;
+    width: 250px;
+    height: 26px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    line-height: 26px;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    margin: 9px -74px;
+}

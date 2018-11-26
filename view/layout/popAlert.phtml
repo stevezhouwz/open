@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+<link rel="stylesheet" href="/css/Myalert.css" type="text/css" />
+
+<!-- Modal -->
+<div class="pop-fade" id="popupalert" v-bind:style="{background:background}">
+	<div class="pop-content popFrame" v-bind:style="{top:top+'px'}" v-show="type==0">
+		<p class="pc-text nc-text mainText">{{content}}</p>
+		<div class="pop-buttons pop-row">
+			<button class="bt-sub-sure pop-bt" @click="sure()">知道了</button>
+		</div>
+		<i class="iconfont pop-close" @click="cancel()">&#xe654;</i>
+	</div>
+	<div class="pop-content popFrame msgContent" v-bind:style="{top:top+'px'}" v-show="type==1">
+		<div class="pop-buttons pop-row">
+			<i class="iconfont c-success msgHint">&#xe644;</i>
+			<p class="pc-text mc-text mainText">{{content}}</p>
+		</div>
+	</div>
+    <div class="pop-content popFrame " v-bind:style="{top:top+'px'}" v-show="type==2">
+		<i class="iconfont pop-hint c-warn">&#xe684;</i>
+		<p class="pc-text ac-text mainText">{{content}}</p>
+		<div class="pop-buttons pop-row">
+			<button class="bt-sub-sure pop-bt" @click="sure()">{{btOneTx}}</button>
+			<button class="bt-sub-cancel pop-bt" @click="cancel()">{{btTwoTx}}</button>
+		</div>
+		<i class="iconfont pop-close" @click="cancel()">&#xe654;</i>
+    </div>
+	<div class="pop-content popFrame " v-bind:style="{top:top+'px'}" v-show="type==3">
+		<i class="iconfont pop-hint c-danger">&#xe60f;</i>
+		<p class="pc-text ac-text mainText">{{content}}</p>
+		<div class="pop-buttons pop-row">
+			<button class="bt-sub-sure pop-bt" @click="sure()">{{btOneTx}}</button>
+			<button class="bt-sub-cancel pop-bt" @click="cancel()">{{btTwoTx}}</button>
+		</div>
+		<i class="iconfont pop-close" @click="cancel()">&#xe654;</i>
+	</div>
+	<div class="pop-content popFrame loadContent" v-bind:style="{top:top+'px'}" v-show="type==4">
+		<p class="pc-text mainText lc-text">{{content}}</p>
+		<div class="pop-buttons pop-row">
+			<div class="loading" @click="loading(0)"></div>
+			<div class="loading"></div>
+			<div class="loading l-last" @click="stopLoading()"></div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript"  src="/js/common/vue.min.js"></script>
+<script type="text/javascript" src="/js/snabbt.min.js"></script>
+<script type="text/javascript" src="/js/Myalert.js"></script>
+<script>
+	/**
+	 * @method popupalert  遮罩型弹窗
+	 *  message 必填，弹框内容
+	 * type 必填，弹框类型string  有message,alert,notice,error,loading五种
+	 * callback 非必填，回调函数  如在alert,notice,与error状态下，为确认按钮触发事件，如在message状态下则为弹窗消失时执行 , 不填写与loading状态不执行
+	 * isNeedClose 非必填，如为true或不填写，且有确认按钮的情况下，则为确认按钮点击后，弹窗消失。如为false则不消失。（注意message，默认状态是两秒消失，设为false则不消失）
+	 */
+
+	/**
+	 * @method message 发送普通消息
+	 * @param msg 消息内容
+	 */
+	 
+	 /**
+	 * @method stopLoading 关闭加载中弹框
+	 */
+</script>

@@ -1,0 +1,169 @@
+<style>
+.shakeWOne{clear: both;display: block;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);}
+.oneWCont{width: 450px;height: 320px;background: url("/img/open/one.jpg");background-size: 100% 100%;background-repeat: no-repeat; position: relative;left: 50%;top: 50%;margin-left: -225px;margin-top: -160px;}
+.wcloseDiv{width: 475px; text-align: right;}
+.wcloseDiv i{color: white;font-size: 20px;cursor: pointer;position: relative;top: -23px;}
+
+#shakeWOne{display: none;}
+/**********摇一摇css***********/
+.wshake{}
+.yaocont{position: relative;margin: auto;height: 70px;}
+#spanText{font-size: 0.65cm;font-weight: bold;color: #ff3e3e;}
+.zhewno{position:absolute;background:#F7DECA;height: 70px;margin: auto;}
+.zheimg{position:absolute;background:#F7DECA;height: 70px;}
+.wybody{margin: 100px auto;text-align: center;}
+.wbai{color: #ff3e3e;font-size: 22px;font-weight: bold;width: 100px;margin: auto;}
+.baiimg{color: #ff3e3e;font-size: 22px;font-weight: bold;width: 100%;margin-top: -10px;}
+[v-cloak]{display: none;}
+.yaoimg{position: relative;margin: auto;height: 70px;width: 300px;}
+
+</style>
+<section id="shakeWOne" class="shakeWOne">
+	<div class="oneWCont" >
+		<div class="wcloseDiv" >
+			<i class="iconfont wiclose">&#xe654;</i>
+		</div>
+		<div class="wshake">
+			<div class="wybody" v-model="radioType">
+				<h1 class="wbai" v-show="radioType == 0" v-cloak></h1>
+    			<div class="yaocont" v-show="radioType == 0" v-cloak>
+          			<div class='zhewno'></div>
+          			<span id="spanText" class='wnospan' v-model="spanText">{{spanText}}</span>
+    			</div>
+    			<h1 class="baiimg" v-show="radioType == 1"  v-cloak></h1>
+    			<div class="yaoimg" v-show="radioType == 1"  v-cloak>
+    				<div class='zheimg'></div>
+              		<img class='img-logo' width="300" height="70" src="{{spanImg}}" v-model="spanImg"/>
+    			</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+shakeWOne = new Vue({
+	el:"#shakeWOne",
+	data:{
+		radioType:0,
+		spanText:"讯鸟年度盛会",
+		spanImg:"/img/open/meinv.jpg",
+		ywidth:0,
+	},
+});
+$().ready(function(){
+	
+	$(".wcloseDiv i").click(function(){
+        if($("#music_url").val() || $("#checkMusic").val()) {
+            $(".preAudio")[0].pause();
+        }
+		$("#shakeWOne").hide();
+		if(shakeWOne.radioType == "0"){
+			$(".wbai").html("");
+			$(".zhewno").css("width","0px");
+			clearTimeout(tt);
+			return x=0;
+		}else{
+			$(".baiimg").html("");
+			$(".zheimg").css("width","0px");
+			clearTimeout(timr);
+			return j=0;
+		}
+	})
+	clickMove();
+});
+
+function clickMove(){
+	$("#swnoShakeOne").click(function(){
+		var shakeUrl = $(this).parent().parent().next().find("input[type='radio']").val();
+		var sequence = $("#sequence").val();
+
+		$.ajax({
+            type:'POST',
+            url: "/application/index/searchWno",
+            datatype:"JSON",
+            data:{"sequence":sequence,"shakeUrl":shakeUrl},    
+            success: function(ret){
+                ret=JSON.parse(ret);
+                if(ret.result==0){
+                	shakeWOne.radioType = ret.shake_type;
+                	shakeWOne.spanImg = ret.shake_img;
+                	shakeWOne.spanText = ret.shake_text;
+                    $("#spanText").html(shakeWOne.spanText);
+
+                	$("#shakeWOne").show();
+            		if(shakeWOne.radioType == "0"){
+            			var width = $("#spanText").width();
+						console.log("yu---"+width);
+            			$(".zhewno").css("width",width);
+						
+            			shakeWOne.ywidth = width;
+                        console.log(shakeWOne.ywidth);
+            			var bai = $(".wbai").html();
+            			if(bai== "100%" || bai== ""){
+            				moveWno($("#checkMusic").val());
+            			}
+            		}else{
+            			var bai = $(".baiimg").html();
+            			if(bai== "100%" || bai== ""){
+            				$(".zheimg").css("width","300px");
+            				moveWnoimg($("#checkMusic").val());
+            			}
+            		}
+                }
+            },
+            error:function(e){
+                alert("网络错误");
+            }     
+    	});
+		
+	});
+}
+var x=0;
+function addWno(x){
+
+	$(".zhewno").css("width",shakeWOne.ywidth-x);
+	var xx = (450-shakeWOne.ywidth)/2 + x;
+	$(".zhewno").css("left",xx);
+	var bai = Math.round(x*100 / shakeWOne.ywidth);
+	$(".wbai").html(bai+"%");
+}
+function moveWno(music_url){
+    if(music_url) {
+        $(".preAudio").attr("src", music_url);
+        $(".preAudio")[0].load();
+        $(".preAudio")[0].play();
+    }
+	if(x>shakeWOne.ywidth){
+		$(".zhewno").css("left","");
+		return x=0;
+	}
+	if(x/shakeWOne.ywidth<=1){
+		tt = setTimeout("moveWno()",10)
+		addWno(x);
+	    x++;
+		}
+}
+
+var j=0;
+function addimg(j){
+	$(".zheimg").css("width",300-j);
+	$(".zheimg").css("left",j);
+	var bai = Math.round(j*100 / 300);
+	$(".baiimg").html(bai+"%");
+}
+function moveWnoimg(music_url){
+    if(music_url) {
+        $(".preAudio").attr("src", music_url);
+        $(".preAudio")[0].load();
+        $(".preAudio")[0].play();
+    }
+	if(j>300){
+		$(".zheimg").css("left","");
+		return j=0;
+	}
+	if(j/300<=1){
+		timr = setTimeout("moveWnoimg()",10)
+		addimg(j);
+	    j++;
+		}
+}
+</script>

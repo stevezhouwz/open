@@ -1,0 +1,182 @@
+<style>
+.customSession{position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(0, 0, 0, 0.5);display: none; z-index: 1000;}
+.customPreCont{position: absolute;left: 50%;top: 50%;margin-left: -225px;margin-top: -175px;text-align: center;width: 475px;height: 350px;  }
+.customPreClose{text-align: right;}
+.customPreClose .iclose{color: white;font-size: 20px;cursor: pointer;}
+.customPreShake{width: 450px;height: 320px;background-size: 100% 100%;  }
+.customPreShake .customSpeed{padding-top: 95px;padding-left: 20px;}
+.customPreShake .customLoading{height: 40px;width: 100%;text-align: center;font-size: 26px;}
+.customPreShake .customYao{height: 10px;border-radius: 20px;}
+.customPreShake .customBorder{border: 2px solid white;height: 20px;width: 390px;padding: 3px;border-radius: 40px;}
+
+.customPreShake .customTextCont{padding-top: 80px; text-align: center;}
+.customPreShake .textLoading{height: 40px; width: 100%; text-align: center; font-size: 26px;}
+.customPreShake .textCont{font-size: 32px;}
+
+.customPreShake .customImgCont{padding-top: 80px; text-align: center;}
+.customPreShake .imgLoading{height: 40px; width: 100%; text-align: center; font-size: 26px;color: white;}
+
+.preAudio{display: none;}
+[v-cloak]{display: none;}
+
+</style>
+<div class="customSession">
+    <audio class="preAudio" src="" loop="loop"></audio>
+    <div class="customPreCont">
+        <div class="customPreClose" >
+            <i class="iconfont iclose">&#xe654;</i>
+        </div>
+        <div class="customPreShake">
+            <div class="customSpeed" v-show="inputVal == 1" v-cloak>
+                <div class="customLoading" v-model="progressColor" v-bind:style="{color:progressColor}"></div>
+                <div class="customBorder" v-model="progressColor" v-bind:style="{borderColor:progressColor}">
+                    <div class="customYao" v-model="progressColor" v-bind:style="{background:progressColor}"></div>
+                </div>
+            </div>
+            <div class="customTextCont" v-show="inputVal == 2" v-cloak>
+                <div class="textLoading" v-model="textColor" v-bind:style="{color:textColor}"></div>
+                <div class="textCont" v-model="textColor" v-bind:style="{color:textColor}" v-cloak>{{inputText}}</div>
+            </div>
+            <div class="customImgCont" v-show="inputVal == 3" v-cloak>
+                <div class="imgLoading"></div>
+                <img class="imgSrc" width="390" height="70" src="{{logo}}" v-model="logo">
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$().ready(function(){
+    customShake.init();
+});
+customShake = new Vue({
+	el:".customSession",
+	data:{
+        customBg:"/img/open/custombg.jpg",
+        progressColor:"white",
+        inputText:"讯鸟年度盛会",
+        textColor:"white",
+        logo:"/img/newlogo.png",
+        inputVal:"3",
+        SpeedData:{
+            i:"0",
+            width:"380",
+            timer:"0",
+        },
+        TextData:{
+            TextOpacity:"0",
+            TextTimer:"0"
+        },
+        ImgData:{
+            ImgOpacity:"0",
+            ImgTimer:"0"
+        }
+	},
+    methods: {
+        init: function () {
+            this.PreClose();
+            this.CustomReData();
+            //this.PrevView(customShake.inputVal);
+        },
+        ShakeMove: function () {
+            if (customShake.SpeedData.i > customShake.SpeedData.width) {
+                return customShake.SpeedData.i = 0;
+            }
+            if (customShake.SpeedData.i / customShake.SpeedData.width <= 1) {
+                customShake.SpeedData.timer = setTimeout("customShake.ShakeMove()", 10)
+                customShake.shakeAdd(customShake.SpeedData.i);
+                customShake.SpeedData.i++;
+            }
+        },
+        shakeAdd: function (i) {
+            $(".customYao").css("width", i);
+            var bai = Math.round(i * 100 / customShake.SpeedData.width);
+            $(".customLoading").html(bai + "%");
+        },
+        TextOpacity: function (x) {
+            $(".textCont").css("opacity", x / 100);
+            var bai = Math.round(x * 100 / 100);
+            $(".textLoading").html(bai + "%");
+        },
+        TextTimer: function () {
+            if (customShake.TextData.TextOpacity > 100) {
+                return customShake.TextData.TextOpacity = 0;
+            }
+            if (customShake.TextData.TextOpacity / 100 <= 1) {
+                customShake.TextData.TextTimer = setTimeout("customShake.TextTimer()", 10)
+                customShake.TextOpacity(customShake.TextData.TextOpacity);
+                customShake.TextData.TextOpacity++;
+            }
+        },
+        ImgOpacity: function (y) {
+            $(".imgSrc").css("opacity", y / 100);
+            var bai = Math.round(y * 100 / 100);
+            $(".imgLoading").html(bai + "%");
+        },
+        ImgTimer: function () {
+            if (customShake.ImgData.ImgOpacity > 100) {
+                return customShake.ImgData.ImgOpacity = 0;
+            }
+            if (customShake.ImgData.ImgOpacity / 100 <= 1) {
+                customShake.ImgData.ImgTimer = setTimeout("customShake.ImgTimer()", 10)
+                customShake.ImgOpacity(customShake.ImgData.ImgOpacity);
+                customShake.ImgData.ImgOpacity++;
+            }
+        },
+        PrevView: function (inputVal,music_url) {
+            $(".customSession").show();
+            if(music_url) {
+                $(".preAudio").attr("src", music_url);
+                $(".preAudio")[0].load();
+                $(".preAudio")[0].play();
+            }
+            customShake.clearTimeout();
+            switch (inputVal) {
+                case "1":
+                    customShake.ShakeMove();
+                    break;
+                case "2":
+                    customShake.TextTimer();
+                    break;
+                case "3":
+                    customShake.ImgTimer();
+                    break;
+                default:
+            }
+        },
+        clearTimeout: function () {
+            clearTimeout(customShake.SpeedData.timer);
+            clearTimeout(customShake.TextData.TextTimer);
+            clearTimeout(customShake.ImgData.ImgTimer);
+        },
+        PreClose:function () {
+            $(".customPreClose .iclose").click(function () {
+                if($("#music_url").val() || $("#checkMusic").val()) {
+                    $(".preAudio")[0].pause();
+                }
+                customShake.clearTimeout();
+                $(".customYao").css("width", "0");
+                $(".customLoading").html("0%");
+                customShake.SpeedData.i = "0";
+
+                $(".textCont").css("opacity", "0");
+                $(".textLoading").html("0%");
+                customShake.TextData.TextOpacity = "0";
+
+                $(".imgSrc").css("opacity","0");
+                $(".imgLoading").html("0%");
+                customShake.ImgData.ImgOpacity = 0;
+                $(".customSession").hide();
+            })
+        },
+        CustomReData:function () {
+            customShake.customBg = $("#custom_bg").val();
+            customShake.progressColor = $("#custom_color").val();
+            customShake.inputText = $("#custom_text").val();
+            customShake.textColor = $("#shake_text_color").val();
+            customShake.logo = $("#shake_img_url").val();
+            customShake.inputVal = $("#custom_pattern").val();
+            $(".customPreShake").css("background-image","url("+customShake.customBg+")");
+        }
+    }
+});
+</script>

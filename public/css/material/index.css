@@ -1,0 +1,87 @@
+.mainStage{position:relative;  width:100%;  min-width: 1000px; padding: 0 20px;}
+.mTitle{position:relative; width:100%; height:60px; border-bottom: 1px solid #dcdddd;}
+.mtLocation{position:absolute; top:20px; left:0px; font-size: 0px;}
+.mRow{font-size: 0px;}
+.mRow >*{display: inline-block; vertical-align: top}
+.mtlText{position:relative; font-size: 14px; color:#080808; margin-right:5px;}
+.mtlShade{color: #dcdddd}
+.mtlNext{position:relative; font-size: 14px; color:#080808; margin-right:5px;}
+
+.mtControl{position:absolute; top:15px; right:0px; font-size: 0px;}
+.mButton{position:relative; width:100px; height:30px; outline:none; color:#ff5c54; background:white; border:1px solid #FF5C54; border-radius:20px; font-size:14px;}
+.mbYes{color:#ff5c54; background:white; border:1px solid #FF5C54;}
+.mbYes:hover{color:white;background: #ff5c54}
+.mbNo{background: #EFEFEF; border: 1px solid #EFEFEF; color: #595957;}
+.mbNo:hover{background: #dddddd}
+.mtcB{margin-left:15px;}
+
+.mtGuides{position:absolute; top:15px; right:0px; font-size: 0px;}
+.mtgGuide{font-size: 15px; color:#333333}
+
+.mTabs{position:relative;width:100%;height:45px;margin:20px 0px;}
+.mtTab{position:relative;width:33.3%; height:100%;border:solid 1px #ff5c54;cursor:pointer;}
+.mtTab p{position:relative;color:#ff5c54;font-size: 14px;top:10px;}
+.mtTab.active{background: #FF5C54;}
+.mtTab.active p{color:white;}
+.mttLeft{ border-bottom-left-radius: 20px; border-top-left-radius: 20px}
+.mttMiddle{border-left:none;border-right:none;}
+.mttRight{ border-bottom-right-radius: 20px; border-top-right-radius: 20px}
+.mCenter{text-align: center;}
+
+.mVideos{position:relative;width:100%;padding:0px 0px 15px 15px;border: solid 1px #efefef;min-height: 400px;}
+.mvPart{position:relative;width:150px;height:195px;margin:15px 15px 0px 0px;}
+.mamCtrls{position:relative;width:100%;height:20px;}
+.isNeedShow{position:relative;}
+.mvVideo{position:relative;width:150px;height:150px;}
+.mvAdd{border: solid 1px #DDDDDD;background: #EFEFEF;text-align: center;cursor: pointer}
+.mvVideo .mvaIcon{position:relative;font-size: 58px; top:20px;color: #333333}
+.mvaHint{position:relative;font-size:18px;color: #333333}
+
+.mvHints{position:relative;width:100%;height:20px;text-align: center;margin-top:5px;}
+.mvHints p{font-size:14px;}
+.mvSignals{position:relative;width:100%;height:20px;text-align: center;}
+.mvsSignal{font-size:20px;margin:0 5px;}
+.mvsSignal.hasM{color:#e91e63}
+.mvsSignal.hasPre{color:#009688}
+.mvCover{position:absolute;width:100%;height:100%;top:0;left:0;z-index:10;background:rgba(255, 87, 34, 0.8);text-align:center;display: none}
+.mvEach.active .mvCover{display: block;}
+.mvCover .mvcCtr{position:relative;font-size:32px;color:black;cursor: pointer;margin: 0px 5px; top:60px;}
+
+.maShade{position:fixed;width:100%;height:100%;top:0;bottom:0;left:0;right:0;text-align: center;background:rgba(0,0,0,0.8);z-index: 100;display: none;}
+/*.maContent{position:relative;top:100px;width:70%;height: 450px;background: white;border-radius: 20px;margin:0 auto;}*/
+/*.mamFrame{position:relative;width:100%;height:1000px;text-align: left}*/
+
+.maContent{position:relative;top:100px;width:500px;height: 460px;background: white;border-radius: 15px;margin:0 auto;}
+.maContent .masClose{position:absolute;font-size:30px;top:0px;right:5px;color:black;cursor: pointer;z-index:5}
+.maTitle{position:relative;width:98%;height:50px;margin:0 auto;border-bottom: solid 1px #dcdddd;text-align: center;}
+.maTitle p{position:relative;top:8px;font-size: 20px;}
+.matHints{position:absolute;top:5px;left:10px;}
+.matHints p{font-size:14px;}
+.editTarget{color:#ff5c54}
+.maMain{position:relative;width:98%;height:350px;overflow-y: auto;margin:0 auto;}
+.mamFrame{position:relative;width:130px;height:330px;margin:10px 10px;text-align: center;}
+
+.mamPart{position:relative;width:130px;height:160px;padding:0 5px; margin-bottom:10px;text-align: center;}
+.mamAddButton{position:relative;width:100%;height:100%;}
+.mamBlock{position:relative;width:120px;height:120px;}
+.mamAdd{border: solid 1px #DDDDDD;background: #EFEFEF;text-align: center;cursor: pointer}
+.mamAdd .mvmaIcon{position:relative;font-size: 53px; top:17px;color: #333333}
+.maAddHide{opacity: 0.5; cursor: auto;}
+
+.mamUPImg{position:relative;width:100%;height:100%;}
+.mamaHint{position:relative;width:100%;height:30px;text-align: center;margin-top:5px;}
+p.mamaName{font-size:16px;width:100%;color: #333333;overflow:hidden;text-overflow: ellipsis;/*文字隐藏后添加省略号*/  white-space: nowrap;/*强制不换行*/}
+p.mamaName:hover{text-overflow: clip;overflow: auto;width:auto;white-space: normal;}
+.mamInput{font-size:16px;color: #333333;border:solid 1px #a9a2a2;margin-top: 0;width:90%;}
+.maCover{position:absolute;width:100%;height:100%;top:0;left:0;z-index:10;background:rgba(0, 0, 0, 0.8);text-align:center;display: none}
+.maUploading{position:relative;width: 100%;height:100% ;display: none}
+.maProcess{position:relative;width:90%;height:18px;top:50px;border:solid 2px white;border-radius:12px;margin:0 auto;overflow: hidden;}
+.mapColor{position:relative;height:100%;background: #607d8b;width:100%}
+.mapTextFrame{position:relative;width:100%; top:70px;}
+.mapTextFrame p{position:relative;font-size:14px;color:white}
+
+.maRecoding{position:relative;width:100%;height:100%;display: none;}
+.marText{position:relative;top:60px;font-size:14px;color:white}
+#videoFile{display: none;}
+.maBottom{position:relative;width:98%;margin:0 auto;border-top:solid 1px #DCDDDD;padding-top:10px;text-align: right}
+.maBottom .mHidden{display: none;}

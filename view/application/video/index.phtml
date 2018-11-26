@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <link rel="stylesheet" href="/css/video/index.css" type="text/css" />
+	<link rel="stylesheet" href="/css/common/uploadvideo.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>开场视频设置</title>
+</head>
+<body>
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="video_src" value="<?php echo $data['video_src']?>">
+<input type="hidden" id="patter" value="<?php echo $data['patter']?>">
+<input type="hidden" id="storage" value="<?php echo $data['storage']?>">
+<input type="hidden" id="project" value="<?php echo $data['project']?>">
+<input type="hidden" id="feature" value="<?php echo $data['feature']?>">
+<input type="hidden" id="module" value="<?php echo $data['module']?>">
+<input type="hidden" id="env" value="<?php echo $data['env']?>">
+<input type="hidden" id="ispayment" value="<?php echo $data['ispayment']?>">
+<input type="hidden" id="www" value="<?php echo $data['www']?>">
+	<div id="videoCont" class="videobody">
+		<div class="shHender">
+			<span class="shti fi">开幕式</span>
+			<span class="shti">></span>
+			<span class="shti">开场视频设置</span>
+			<div class="shHend">
+				<button v-show="navType ==1" id="guan" class="obtn dBtn" v-cloak>管理</button>
+				<button id="vsave" class="obtn dBtn">保存</button>
+				<button class="obtn cancel">取消</button>
+			</div>
+		</div>
+		<div class="vNavCont">
+			<div class="vnavBtn left active" v-model="navType" value="0" >默认素材库</div>
+			<div class="vnavBtn right" v-model="navType" value="1">个人素材库</div>
+			<div class="textTi">
+				<i class="iconfont">&#xe62e;</i>
+				<span>可在视频中插入文字</span>
+				<span v-if="navType ==1" v-cloak>（上传支持avi、rmvb、mp4、mkv、flv格式，建议大小不超过1G）</span>
+			</div>
+		</div>
+		<div class="videoKu" v-show="navType ==0" v-cloak>
+			<!-- 可自定义   -->
+			<?php foreach ($data['result'] as $rows){?>
+			<div class="videoWList">
+				<div class="videoWImg">
+					<div class="videoWZhe">
+						<div  class="in_block wvideoy">
+                            <i class="iconfont pre">&#xe6d9;</i>
+                            <p>预览</p>
+                        </div>
+						<div  class="in_block wclick">
+                            <i class="iconfont">&#xe649;</i>
+                            <p>自定义</p>
+                        </div>
+<!--                        <div  class="in_block download" d_url="--><?php //echo $rows['dl_url']?><!--">-->
+<!--                            <i class="iconfont">&#xe60e;</i>-->
+<!--                            <p>下载</p>-->
+<!--                        </div>-->
+					</div>
+					<img name="cover" alt="" src="<?php echo $rows['video_cover']?>" width="150" height="150">
+				</div>
+				
+				<div class="videoRadio">
+					<input class="vRadio" type="radio" name="video" v-model="video_src" dic_id="<?php echo $rows['video_id']?>" pre_url="<?php echo $rows['preview_url']?>" value="<?php echo $rows['video_url']?>">
+					<i class="iconfont viRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span><?php echo $rows['video_name']?></span>
+				</div>
+			</div>
+			<?php }?>
+			
+		</div>
+
+		<div class="wvideoCont" v-show="navType ==1" v-cloak>
+<!--			<img alt="" src="/img/video/ing.png">-->
+
+			<div id="upload-div">
+				<div class="uploadbox">
+					<div class="uploadbox-title">
+						<span>视频上传</span>
+						<span class="iconfont iconfont2">&#xe654;</span>
+					</div>
+					<span style="color: #ff5c54;font-weight: bold;" id="upprecent">0%</span>
+					<div class="uploadprecess">
+						<div class="uploadprecess-bar">
+
+						</div>
+					</div>
+					<button id="uploadbtn" style="display: none;"></button>
+					<button class="close-upload retrybtn" id="retrybtn" disabled="disabled">重试</button>
+					<button class="close-upload" id="cancelbtn">取消上传</button>
+				</div>
+			</div>
+			<input id="files" type="file" accept=".avi,.rmvb,.mp4,.mkv,.flv">
+			<div class="up_video" onclick="$('input[id=files]').click();">
+				<div class="up_cont">
+					<i class="iconfont">&#xe658;</i>
+					<p class="add_span">上传视频</p>
+				</div>
+			</div>
+
+			<?php foreach ($data['nvideo'] as $val){?>
+			<div class="videoWList" v_status="<?php echo $val['video_status']?>">
+				<div class="videoWImg">
+					<template v-if="<?php echo $val['video_status']?>">
+						<div class="videoWZhe">
+                            <div  class="in_block wvideoy">
+                                <i class="iconfont">&#xe6d9;</i>
+                                <p>预览</p>
+                            </div>
+                            <div  class="in_block wclick">
+                                <i class="iconfont">&#xe649;</i>
+                                <p>自定义</p>
+                            </div>
+						</div>
+					</template>
+					<template v-else>
+						<div class="videoSZhe">
+							<span class="ing">正在转码...</span>
+						</div>
+					</template>
+					<img name="cover" alt="" src="<?php echo $val['video_cover']?>" width="150" height="150">
+				</div>
+
+				<div class="videoRadio">
+					<input class="vRadio" type="radio" name="video" v-model="video_src" dic_id="<?php echo $val['video_id']?>" value="<?php echo $val['video_url']?>">
+					<i class="iconfont viRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span><?php echo $val['video_name']?></span>
+				</div>
+			</div>
+			<?php }?>
+		</div>
+	</div>
+    <div class="payZhe">
+        <div class="payCont">
+            <div class="payCloseCont">
+                <i class="iconfont">&#xe654;</i>
+            </div>
+            <div class="payText">
+                <p>体验模式不支持下载。</p>
+                <p class="pcolor">购买正式版，素材即可免费下载！</p>
+                <button type="button" class="payBtn">立即购买</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="/js/video/index.js" ></script>
+<script src="<?php echo $data['storage_js']?>"></script>
+<script src="/js/common/uploadvideo.js"></script>
+
+<script type="text/javascript">
+$().ready(function(){
+	videoCont.init();
+	var url = $("#storage").val();
+	$(".wvideoCont>div[v_status='0']").each(function () {
+		var target = $(this);
+		var video_id = target.find("div[class='videoRadio']").find("input[class='vRadio']").attr("dic_id");
+		var inputv = target.find("div[class='videoRadio']").find("input[class='vRadio']").val();
+		target.find("div[class='videoRadio']").find("i").unbind("click");
+		var timer = setInterval(function () {
+			$.ajax({
+				type:"get",
+				url:url,
+				async:true,
+				data:{'file_url':inputv},
+				success:function(ret){
+					console.log(ret);
+					var transcodeStatus = ret.transcodeStatus;
+					var transcodedUrl = ret.transcodedUrl;
+					var cover = ret.cover;
+					if(transcodeStatus == "1" && transcodedUrl && cover){
+						clearInterval(timer);
+						videoCont.updateData(transcodeStatus,transcodedUrl,cover,video_id);
+					}
+				}
+			});
+		},2000)
+	})
+	$("#files").uploadvideo();
+
+});
+</script>
+</html>
+<?php include(BASE_PATH . "/view/layout/videolayout.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

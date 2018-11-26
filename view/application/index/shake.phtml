@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="开幕式">
+    <meta name="description" content="开幕式">
+    <link rel="stylesheet" href="/css/common/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+    <link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+    <script src="/js/common/jquery-1.12.0.min.js"></script>
+    <script src="/js/common/bootstrap.min.js"></script>
+    <script src="/js/common/vue.min.js"></script>
+    <link rel="shortcut icon" href="/img/open.png">
+    <title>摇一摇开幕设置</title>
+</head>
+<link rel="stylesheet" href="/css/index/shake.css" type="text/css" />
+<link rel="stylesheet" href="/css/common/uploadmusic.css" type="text/css" />
+<body>
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="music_idd" value="<?php echo $data['music_idd']?>">
+<input type="hidden" id="music_id" value="<?php echo $data['music_id']?>">
+<input type="hidden" id="music_url" value="<?php echo $data['music_url']?>">
+<input type="hidden" id="loading" value="<?php echo $data['loading_url']?>">
+<input type="hidden" id="storage" value="<?php echo $data['storage_js']?>">
+<input type="hidden" id="project" value="<?php echo $data['project']?>">
+<input type="hidden" id="module" value="<?php echo $data['module']?>">
+<input type="hidden" id="feature" value="<?php echo $data['feature']?>">
+<input type="hidden" id="env" value="<?php echo $data['env']?>">
+<input type="hidden" id="checkMusic" value="<?php echo $data['checkMusic']?>">
+<input type="hidden" id="custom_bg" value="<?php echo $data['custom_bg']?>">
+<input type="hidden" id="custom_pattern" value="<?php echo $data['custom_pattern']?>">
+<input type="hidden" id="custom_color" value="<?php echo $data['custom_color']?>">
+<input type="hidden" id="custom_text" value="<?php echo $data['custom_text']?>">
+<input type="hidden" id="shake_text_color" value="<?php echo $data['shake_text_color']?>">
+<input type="hidden" id="shake_img_url" value="<?php echo $data['shake_img_url']?>">
+	<div class="shbody" id="shbody">
+		<div class="shHender">
+			<span class="shti fi">开幕式</span>
+			<span class="shti">></span>
+			<span class="shti">摇一摇开幕设置</span>
+			<div class="shHend">
+				<button id="submit" class="obtn dBtn">保存</button>
+				<button class="obtn cancel">取消</button>
+			</div>
+		</div>
+		<div class="setNum">
+			<span>设置摇动总次数</span>
+			<input id="shakeNum" type="text"  name="num" maxlength="10" v-model="num"  value="<?php echo $data['num']?>" />
+			<i class="iconfont">&#xe62e;</i>
+			<span class="setNumti">观众摇满该次数后将正式拉开活动序幕<span class="colorRed">（例如：5000次可支持200人规模持续摇动1分钟左右）</span></span>
+			<div class="ti" v-if="num <= 0">
+				<i class="iconfont">&#xe684;</i>
+				<span>摇动次数应大于0</span>
+			</div>
+		</div>
+        <div class="musicContent">
+            <span>背景音乐：</span>
+            <div class="musicRadio width60">
+                <input  type="radio" name="shakeMusic" value="0">
+                <i class="iconfont msRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span>无</span>
+            </div>
+            <div class="musicRadio">
+                <input  type="radio" name="shakeMusic" value="1">
+                <i class="iconfont msRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span>音乐1</span>
+                <i class="iconfont audioPlay up">&#xe600;</i>
+                <audio class="musicAudio" src="/file/music1.mp3"></audio>
+            </div>
+            <div class="musicRadio">
+                <input  type="radio" name="shakeMusic" value="2">
+                <i class="iconfont msRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span>音乐2</span>
+                <i class="iconfont audioPlay up">&#xe600;</i>
+                <audio class="musicAudio" src="/file/music2.mp3"></audio>
+            </div>
+            <div class="musicRadio" id="lastMusic">
+                <input  type="radio" name="shakeMusic" value="3">
+                <i class="iconfont msRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span>音乐3</span>
+                <i class="iconfont audioPlay up">&#xe600;</i>
+                <audio class="musicAudio" src="/file/music3.mp3"></audio>
+            </div>
+            <?php if($data['music_url']){?>
+            <div class="musicRadio width130">
+                <input  type="radio" name="shakeMusic" value="<?php echo $data['music_id']?>">
+                <i class="iconfont msRadio" after="&#xe67a" before="&#xe6a9"></i>
+                <span><?php echo $data['music_name']?></span>
+                <i class="iconfont audioPlay up">&#xe600;</i>
+                <audio id="" class="musicAudio" src="<?php echo $data['music_url']?>"></audio>
+            </div>
+            <button id="uploadMusic" type="button" class="cBtn blank" onclick="$('input[id=musicFile]').click();">更换音乐
+            <p class="music_bubble">仅支持mp3格式，大小不超过10M</p>
+            </button>
+            <?php }else{?>
+            <button id="uploadMusic" type="button" class="cBtn" onclick="$('input[id=musicFile]').click();">上传音乐
+            <p class="music_bubble">仅支持mp3格式，大小不超过10M</p>
+            </button>
+            <?php }?>
+            <input id="musicFile" type="file" accept=".mp3">
+            <div id="upload-div">
+                <div class="uploadbox">
+                    <div class="uploadbox-title">
+                        <span>音乐上传</span>
+                        <span class="iconfont iconfont2">&#xe654;</span>
+                    </div>
+                    <span style="color: #ff5c54;font-weight: bold;" id="upprecent">0%</span>
+                    <div class="uploadprecess">
+                        <div id="upBack" class="uploadprecess-bar">
+
+                        </div>
+                    </div>
+                    <button id="uploadbtn" style="display: none;"></button>
+                    <button class="close-upload retrybtn" id="retrybtn" disabled="disabled">重试</button>
+                    <button class="close-upload" id="cancelbtn">取消上传</button>
+                </div>
+            </div>
+        </div>
+		<div class="shakeCont">
+            <!-- 可自定义-->
+            <div class="shakeList">
+                <?php if($data['custom_bg']){?>
+                <div class="shakeImg">
+                    <div class="shakeZhe">
+                        <div id="customPre" class="in_block">
+                            <i class="iconfont pre">&#xe6d9;</i>
+                            <p>预览</p>
+                        </div>
+                        <div id="customShake"  class="in_block">
+                            <i class="iconfont">&#xe649;</i>
+                            <p>自定义</p>
+                        </div>
+                    </div>
+                    <div class="shakeW">
+                        <img alt="" src="/img/open/shakew.png">
+                    </div>
+                    <img name="cover" alt="" src="<?php echo $data['custom_bg']."?x-oss-process=image/resize,m_fixed,h_150,w_150";?>" width="150" height="150">
+                </div>
+                <?php }else {?>
+                <div class="uploadCont">
+                    <i class="iconfont">&#xe658;</i>
+                    <p>自定义</p>
+                </div>
+                <?php }?>
+                <div class="shakeRadio">
+                    <input class="shRadio" type="radio" name="shake" v-model="shakeUrl" value="0">
+                    <i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+                    <span>自定义</span>
+                </div>
+            </div>
+			<!-- 默认   -->
+			<div class="shakeList">
+				<div class="shakeImg">
+					<div class="shakeZhe">
+                        <div id="One">
+                            <i class="iconfont">&#xe6d9;</i>
+                            <p>预览</p>
+                        </div>
+					</div>
+					<img name="cover" alt="" src="/img/open/yaoyiy2.jpg" width="150" height="150">
+				</div>
+
+				<div class="shakeRadio">
+					<input class="shRadio" type="radio" name="shake" v-model="shakeUrl" value="1">
+					<i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span>动画1</span>
+				</div>
+			</div>
+
+			<!-- 可自定义   -->
+			<div class="shakeWList">
+				<div class="shakeWImg">
+					<div class="shakeWZhe">
+<!--						<button id="swnoShakeOne"  class="shakeWBtn ">预览</button>-->
+<!--						<button id="WBtn" class="shakeWBtn">自定义</button>-->
+                        <div id="swnoShakeOne" class="in_block">
+                            <i class="iconfont pre">&#xe6d9;</i>
+                            <p>预览</p>
+                        </div>
+                        <div  id="WBtn" class="in_block">
+                            <i class="iconfont">&#xe649;</i>
+                            <p>自定义</p>
+                        </div>
+					</div>
+					<div class="shakeW">
+						<img alt="" src="/img/open/shakew.png">
+					</div>
+					<img name="cover" alt="" src="/img/open/one.jpg" width="150" height="150">
+				</div>
+
+				<div class="shakeRadio">
+					<input class="shRadio" type="radio" name="shake" v-model="shakeUrl" value="2">
+					<i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span>动画2</span>
+				</div>
+			</div>
+
+			<div class="shakeWList">
+				<div class="shakeWImg">
+					<div class="shakeWZhe">
+                        <div id="swnoShakeTwo" class="in_block">
+                            <i class="iconfont pre">&#xe6d9;</i>
+                            <p>预览</p>
+                        </div>
+                        <div  id="WBtnTwo" class="in_block">
+                            <i class="iconfont">&#xe649;</i>
+                            <p>自定义</p>
+                        </div>
+					</div>
+					<div class="shakeW">
+						<img alt="" src="/img/open/shakew.png">
+					</div>
+					<img name="cover" alt="" src="/img/open/two.jpg" width="150" height="150">
+				</div>
+
+				<div class="shakeRadio">
+					<input class="shRadio" type="radio" name="shake" v-model="shakeUrl" value="3">
+					<i class="iconfont shRadio" after="&#xe67a" before="&#xe6a9"></i>
+					<span>动画3</span>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="/js/index/shake.js" ></script>
+<script src="<?php echo $data['storage_js']?>"></script>
+<script type="text/javascript" src="/js/common/uploadmusic.js" ></script>
+</html>
+<?php include(BASE_PATH . "/view/layout/wnoShakeTh.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/shakeOne.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/wnoShakeOne.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/wnoShakeTwo.phtml"); ?>
+<?php include(BASE_PATH . "/view/layout/popAlert.phtml"); ?>

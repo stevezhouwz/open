@@ -1,0 +1,62 @@
+@CHARSET "UTF-8";
+/*******全局css********/
+html,body{font-family: "兰亭黑","华文黑体","方正黑体","微软雅黑","helvetica","aria";font-style: normal;color: #595957;}
+.shbody{width: 100%; height: 100%;padding: 0px 30px 30px;}
+.shHender{height: 60px;border-bottom: 1px solid #dcdddd;}
+.shti{padding-top: 20px;display: inline-block;}
+.fi{color: #dcdddd;}
+
+/*******顶部css********/
+.shHend{float: right;clear: both;margin-top: 15px;}
+.openA{color: #595957;text-decoration: underline;cursor: pointer;margin-right: 20px;}
+.openA:hover{color:#39b9f2;}
+.obtn{height:30px; outline:none; color: #ff5c54;background: white;border: 1px solid #FF5C54;border-radius: 20px;-webkit-border-radius: 20px;-moz-border-radius: 20px;-o-border-radius: 20px;}
+.dBtn:hover{background: #FF5C54;color: white;}
+.dBtn{width: 100px;margin-right:15px;}
+.cancel{width: 100px;background: #EFEFEF;border: 1px solid #EFEFEF;color: #595957;}
+.cancel:hover{background: #DCDDDD;color:black;}
+
+/*******自定义内容css********/
+.upShakeCont{margin-top:30px;position: relative;}
+.wshake{height: 300px;width: 430px;display: inline-block;background: url("/img/open/two.jpg");background-size: 100% 100%;}
+.wcont{padding: 20px 0px 20px 20px;height: 300px;width: 497px;display: inline-block;position: absolute;}
+.shInput{margin-top: 20px;}
+
+/*******单选css********/
+.upinput{display: none;}
+.shInput input[type="radio"]+ i {position: relative;top: 3px;color: #ff5c54;font-weight: normal;font-size: 20px;cursor: pointer;}
+.shInput input[type="radio"]+ i:after {content: attr(before);}
+.shInput input[type="radio"]:checked+ i:after {content: attr(after);}
+
+.upSpan{margin-left: 10px;margin-right: 30px;}
+.uploadCont{border: 1px solid #dcdddd;height: 36px;width: 314px;padding-left:10px;color:#dcdddd;}
+#uploadFile{display: none;}
+.shFile{color:white;width: 314px;height: 30px;background: #EFEFEF;border: 1px solid #EFEFEF;border-radius: 2px;-webkit-border-radius: 2px;-moz-border-radius: 2px;-o-border-radius: 2px;}
+
+.inputAtive{border: 1px solid #595957;color:#595957;}
+.btnAtive{color:#595957;background: #DCDDDD;border: 1px solid #DCDDDD;}
+
+.tishi{padding-left: 121px;word-break: break-all;width: 440px;margin-top: 10px;}
+.tishi i{color:#ff5c54;}
+.tishi span{font-size:12px;}
+
+/**********摇一摇css***********/
+.ybody{text-align: center;margin: auto;}
+.yaocont{position: relative;margin: auto;height: 70px;}
+.span{font-size: 0.65cm;font-weight: bold;color: #fbc82b;}
+.ybody{margin: 115px auto;text-align: center;}
+.bai{color: #fbc82b;font-size: 22px;font-weight: bold;width: 100px;height: 24px; margin: auto;}
+.baiimg{color: #fbc82b;font-size: 22px;font-weight: bold;width: 100%;}
+[v-cloak]{display: none;}
+
+.yaoimg{position: relative;margin: auto;height: 70px;width: 300px;}
+
+
+/********上传*********/
+.uploadZhe{clear: both;display: block;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(153, 153, 153, 0.5);}
+.upload{border: solid 1px #dcdddd;height: 147px;width: 280px;margin: 150px auto;background: white;}
+.loadingCont{text-align: center;}
+.ti{margin-top: 30px;text-align: center;}
+.uploadBai{text-align: center;margin-top: 15px;margin-bottom: 15px;}	
+.myloading{display:inline-block; position:relative;width:8px;height:8px;margin-right:6px; background:#ff5c54;}
+.myloading.l-last{margin-right:0px}	

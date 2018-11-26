@@ -1,0 +1,650 @@
+<link rel="stylesheet" href="/css/font/iconfont.css" type="text/css" />
+<link rel="stylesheet" href="/css/common/base.css" type="text/css" />
+<link rel="stylesheet" href="/css/index/myopen.css" type="text/css" />
+<link rel="stylesheet" href="/pop/pop.css" type="text/css" />
+<script src="/js/common/vue.min.js"></script>
+<style>
+
+/**********开场视频css***********/
+.videoMyZhe{clear: both;display: block;z-index: 1000;position: absolute;width: 100%;height: 100%;left: 0;top: 0;background: rgba(153, 153, 153, 0.5);}
+
+.myOpenVideo{background: black;position: relative;}
+#myVideoOpen{position: absolute;left: 0px;}
+.myContan{clear: both;position: absolute; display: inline-block;width: 450px;height: 272px;left: 0px;overflow: hidden;}
+#myEffect{visibility: visible;display: block;vertical-align:middle;overflow: hidden;font-size: 40px;z-index: 10000;text-align: center;overflow:hidden;height: 200px; margin-top: 15%;}
+
+/*********第一个摇一摇css**********/
+.myContent{position: absolute;left: 50%;top: 50%;margin-left: -226px;margin-top: -160px;text-align: center;width: 450px;height: 320px;background: black;}
+
+/*********第二个摇一摇css**********/
+.myWshake{width: 450px;height: 320px;background: url("/img/open/one.jpg");background-size: 100% 100%;}
+.myYaoCont{position: relative;margin: auto;height: 70px;}
+.myWNoSpan{font-size: 0.65cm;font-weight: bold;color: #ff3e3e;}
+.myZheNo{position:absolute;background:#F7DECA;height: 70px;}
+.myZheImg{position:absolute;background:#F7DECA;height: 70px;}
+.myWbody{position: relative;top: 135px;text-align: center;}
+.myWbai{color: #ff3e3e;font-size: 22px;font-weight: bold;width: 100px;margin: auto;}
+.myBaiImg{color: #ff3e3e;font-size: 22px;font-weight: bold;width: 100%;position: relative;top:-20px;}
+[v-cloak]{display: none;}
+.myYaoImg{position: relative;margin: auto;height: 70px;width: 300px;top:-20px;}
+
+/*********第三个摇一摇css**********/
+
+.myTwoshake{background: url("/img/open/two.jpg");background-size: 100% 100%;width: 450px;height: 320px;}
+.myTwoCont{position: relative;margin: auto;height: 70px;}
+.wnospan{font-size: 0.65cm;font-weight: bold;color: #fbc82b;}
+.myTwoBody{position: relative;top: 120px;text-align: center;}
+.myTwoBai{color: #fbc82b;font-size: 22px;font-weight: bold;width: 100px;margin: auto;}
+.myBaiTwoImg{color: #fbc82b;font-size: 22px;font-weight: bold;width: 100%;}
+[v-cloak]{display: none;}
+.myYaoTwo{position: relative;margin: auto;height: 70px;width: 300px;}
+
+/**********倒计时css***********/
+.myship{height: 320px;width: 450px;position: relative;left: 50%;top: 50%;margin-left: -226px;margin-top: -160px;}
+.yulani{text-align: right;width: 470px;}
+.myClose{position: absolute;left: 455px;top: -15px;color:white;cursor: pointer;}
+.downVideo{height: 320px;width: 450px;background: black;}
+
+#myOpenCont{display: none;}
+#myVideoOpen_html5_api{width: 450px;height: 320px;}
+ .myopenSpeed{padding-top: 95px;padding-left: 20px;}
+.myopenLoading{height: 40px;width: 100%;text-align: center;font-size: 26px;}
+ .myopenYao{height: 10px;border-radius: 20px;}
+ .myopenBorder{border: 2px solid white;height: 20px;width: 390px;padding: 3px;border-radius: 40px;}
+
+ .myopenTextCont{padding-top: 80px; text-align: center;}
+ .myopentextLoading{height: 40px; width: 100%; text-align: center; font-size: 26px;}
+ .myopentextCont{font-size: 32px;}
+
+ .myopenImgCont{padding-top: 80px; text-align: center;}
+ .myopenimgLoading{height: 40px; width: 100%; text-align: center; font-size: 26px;color: white;}
+.customShakeContent{display: none;width: 450px;height: 320px;background-size: 100% 100%;}
+.muopenAudio{display: none;}
+[v-cloak]{display: none;}
+
+
+</style>
+<section id="myOpenCont" class="videoMyZhe">
+    <audio class="muopenAudio" src="" loop="loop"></audio>
+	<div class="myContent" >
+		<i id="myClose" class="iconfont myClose">&#xe654;</i>
+        <div class="customShakeContent">
+            <div class="myopenSpeed" v-show="myinputVal == 1" v-cloak>
+                <div class="myopenLoading" v-model="myprogressColor" v-bind:style="{color:myprogressColor}"></div>
+                <div class="myopenBorder" v-model="myprogressColor" v-bind:style="{borderColor:myprogressColor}">
+                    <div class="myopenYao" v-model="myprogressColor" v-bind:style="{background:myprogressColor}"></div>
+                </div>
+            </div>
+            <div class="myopenTextCont" v-show="myinputVal == 2" v-cloak>
+                <div class="myopentextLoading" v-model="mytextColor" v-bind:style="{color:mytextColor}"></div>
+                <div class="myopentextCont" v-model="mytextColor" v-bind:style="{color:mytextColor}" v-cloak>{{myinputText}}</div>
+            </div>
+            <div class="myopenImgCont" v-show="myinputVal == 3" v-cloak>
+                <div class="myopenimgLoading"></div>
+                <img class="myopenimgSrc" width="390" height="70" src="{{mylogo}}" v-model="mylogo">
+            </div>
+        </div>
+		<!-- 第一个摇一摇 -->
+		<div class="myShakeYao" style="display: none;">
+			<div class="MyBai"></div>
+			<div class="loading-container1">
+				<div class="loading-bar1">
+					<div class="MyMove red1">
+						<div class="lines1"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 第二个摇一摇 -->
+		<div class="myWshake" style="display: none;">
+			<div class="myWbody" v-model="myRadioType">
+				<h1 class="myWbai" v-show="myRadioType == 0" v-cloak></h1>
+    			<div class="myYaoCont" v-show="myRadioType == 0" v-cloak>
+          			<div class='myZheNo'></div>
+          			<span id="mySpanText" class='myWNoSpan' v-model="mySpanText">{{mySpanText}}</span>
+    			</div>
+    			<h1 class="myBaiImg" v-show="myRadioType == 1"  v-cloak></h1>
+    			<div class="myYaoImg" v-show="myRadioType == 1"  v-cloak>
+    				<div class='myZheImg'></div>
+              		<img class='myImgLogo' width="300" height="70" src="{{mySpanImg}}" v-model="mySpanImg"/>
+    			</div>
+			</div>
+		</div>
+		
+		<!-- 第三个摇一摇 -->
+		<div class="myTwoshake" style="display: none;">
+			<div class="myTwoBody" v-model="myTwoType">
+				<h1 class="myTwoBai" v-show="myTwoType == 0" v-cloak></h1>
+    			<div class="myTwoCont" v-show="myTwoType == 0" v-cloak>
+          			<span id="myTwoSpan" class='wnospan' v-model="myTwoSpan">{{myTwoSpan}}</span>
+    			</div>
+    			<h1 class="myBaiTwoImg" v-show="myTwoType == 1"  v-cloak></h1>
+    			<div class="myYaoTwo" v-show="myTwoType == 1"  v-cloak>
+              		<img class='myTwoLogo' width="300" height="70" src="{{myTwoSpanImg}}" v-model="myTwoSpanImg"/>
+    			</div>
+			</div>
+		</div>
+		
+		<!-- 倒计时 -->
+		<div id="myDown" style="display: none;">
+			<video data-proxyload3  poster=""  id="myDowns" class="downVideo"  src=""  preload="auto" autoplay="autoplay" >
+			</video>
+		</div>
+		
+		<!-- 开场视频 -->
+		<div  class="myOpenVideo" style="display: none;">
+        	<video data-proxyload4  poster=""  id="myVideoOpen" width='450' height='320' src=""  preload="auto"  autoplay="autoplay">
+			</video>
+        	 <div class="myContan">
+                 <h3 id="myEffect" class="myTagline">
+        		 </h3>
+             </div>
+		</div>
+	</div>
+</section>
+
+<script>
+    $(function () {
+        myCustom.init();
+    })
+    myCustom = new Vue({
+        el: "#myOpenCont",
+        data: {
+            myRadioType:$("#shake_type").val(),
+            mySpanText:$("#shake_text").val(),
+            mySpanImg:$("#shake_img").val(),
+            ywidth:0,
+            myTwoType:$("#shake_type").val(),
+            myTwoSpan:$("#shake_text").val(),
+            myTwoSpanImg:$("#shake_img").val(),
+            mycustomBg: "/img/open/custombg.jpg",
+            myprogressColor: "white",
+            myinputText: "讯鸟年度盛会",
+            mytextColor: "white",
+            mylogo: "/img/newlogo.png",
+            myinputVal: "2",
+            SpeedData: {
+                i: "0",
+                width: "380",
+                timer: "0",
+            },
+            TextData: {
+                TextOpacity: "0",
+                TextTimer: "0"
+            },
+            ImgData: {
+                ImgOpacity: "0",
+                ImgTimer: "0"
+            }
+        },
+        methods: {
+            init:function () {
+                this.CustomReData();
+            },
+            ShakeMove: function () {
+                if (myCustom.SpeedData.i > myCustom.SpeedData.width) {
+                    downPlay();
+                    return myCustom.SpeedData.i = 0;
+                }
+                if (myCustom.SpeedData.i / myCustom.SpeedData.width <= 1) {
+                    myCustom.SpeedData.timer = setTimeout("myCustom.ShakeMove()", 10)
+                    myCustom.shakeAdd(myCustom.SpeedData.i);
+                    myCustom.SpeedData.i++;
+                }
+            },
+            shakeAdd: function (i) {
+                $(".myopenYao").css("width", i);
+                var bai = Math.round(i * 100 / myCustom.SpeedData.width);
+                $(".myopenLoading").html(bai + "%");
+            },
+            TextOpacity: function (x) {
+                $(".myopentextCont").css("opacity", x / 100);
+                var bai = Math.round(x * 100 / 100);
+                $(".myopentextLoading").html(bai + "%");
+            },
+            TextTimer: function () {
+                if (myCustom.TextData.TextOpacity > 100) {
+                    downPlay();
+                    return myCustom.TextData.TextOpacity = 0;
+                }
+                if (myCustom.TextData.TextOpacity / 100 <= 1) {
+                    myCustom.TextData.TextTimer = setTimeout("myCustom.TextTimer()", 10)
+                    myCustom.TextOpacity(myCustom.TextData.TextOpacity);
+                    myCustom.TextData.TextOpacity++;
+                }
+            },
+            ImgOpacity: function (y) {
+                $(".myopenimgSrc").css("opacity", y / 100);
+                var bai = Math.round(y * 100 / 100);
+                $(".myopenimgLoading").html(bai + "%");
+            },
+            ImgTimer: function () {
+                if (myCustom.ImgData.ImgOpacity > 100) {
+                    downPlay();
+                    return myCustom.ImgData.ImgOpacity = 0;
+                }
+                if (myCustom.ImgData.ImgOpacity / 100 <= 1) {
+                    myCustom.ImgData.ImgTimer = setTimeout("myCustom.ImgTimer()", 10)
+                    myCustom.ImgOpacity(myCustom.ImgData.ImgOpacity);
+                    myCustom.ImgData.ImgOpacity++;
+                }
+            },
+            PrevView: function (inputVal,music_url) {
+                $(".customShakeContent").show();
+                if(music_url){
+                    $(".muopenAudio").attr("src",music_url);
+                    $(".muopenAudio")[0].load();
+                    $(".muopenAudio")[0].play();
+                }
+
+                myCustom.clearTimeout();
+                switch (inputVal) {
+                    case "1":
+                        myCustom.ShakeMove();
+                        break;
+                    case "2":
+                        myCustom.TextTimer();
+                        break;
+                    case "3":
+                        myCustom.ImgTimer();
+                        break;
+                    default:
+                }
+            },
+            clearTimeout: function () {
+                clearTimeout(myCustom.SpeedData.timer);
+                clearTimeout(myCustom.TextData.TextTimer);
+                clearTimeout(myCustom.ImgData.ImgTimer);
+            },
+            CustomReData:function () {
+                myCustom.mycustomBg = $("#custom_bg").val();
+                myCustom.myprogressColor = $("#custom_color").val();
+                myCustom.myinputText = $("#custom_text").val();
+                myCustom.mytextColor = $("#shake_text_color").val();
+                myCustom.mylogo = $("#shake_img_url").val();
+                myCustom.myinputVal = $("#custom_pattern").val();
+                $(".customShakeContent").css("background-image","url("+myCustom.mycustomBg+")");
+            },
+            complete:function () {
+                $(".customShakeContent").hide();
+            }
+        }
+    })
+$().ready(function(){
+	$("#myOpenPre").click(function(){
+		var fist = $("#shyao").attr("dic");
+		var two = $("#downCheck").attr("dic");
+		var th = $("#openVideo").attr("dic");
+		if(fist=="" && two=="" && th ==""){
+			popupalert('没有开幕式','notice',"");
+		}else {
+			$("#myOpenCont").show();
+			open();
+		}
+
+	})
+
+	$("#myClose").click(function(){
+	    if($("#music_url").val()){
+            $(".muopenAudio")[0].pause();
+        }
+        myCustom.clearTimeout();
+        $(".myopencustomYao").css("width", "0");
+        $(".myopencustomLoading").html("0%");
+        myCustom.SpeedData.i = "0";
+
+        $(".myopentextCont").css("opacity", "0");
+        $(".myopentextLoading").html("0%");
+        myCustom.TextData.TextOpacity = "0";
+
+        $(".myopenimgSrc").css("opacity","0");
+        $(".myopenimgLoading").html("0%");
+        myCustom.ImgData.ImgOpacity = 0;
+
+		$("#myOpenCont").hide();
+		$(".myShakeYao").hide();
+		$(".myWshake").hide();
+		$(".myTwoshake").hide();
+		$("#myDown").hide();
+		$(".myOpenVideo").hide();
+
+		$("#myDowns").removeAttr("src");
+		$("#myEffect").html("");
+		$("#myVideoOpen").removeAttr("src");
+
+		$(".MyBai").html("");
+		$(".MyMove").css("width","0px");
+		clearTimeout(myt);
+		myi=0;
+
+		if(myCustom.myRadioType == "0"){
+			$(".myWbai").html("");
+			$(".myZheNo").css("width","0px");
+			clearTimeout(mytt);
+			myx=0;
+
+			$(".myTwoBai").html("");
+			clearTimeout(myttwo);
+			mytx=0;
+		}else{
+			clearTimeout(mytimr);
+			myj=0;
+
+			clearTimeout(mytimrTwo);
+			mym=0;
+		}
+
+	})
+})
+
+
+function open(){
+	var shakeUrl = $("#loading_url").val();
+	if(openBody.first){
+    	if(shakeUrl == 1){
+    		$(".myShakeYao").show();
+    		MyMove($("#music_url").val());
+    	}else if(shakeUrl == 2){
+    		$(".myWshake").show();
+    	 	MyclickMove($("#music_url").val());
+    	}else if(shakeUrl == 3){
+    		$(".myTwoshake").show();
+    		MyclickMoveTwo($("#music_url").val());
+    	}else if(shakeUrl == 0){
+            var custom_pattern = $("#custom_pattern").val();
+            var music_url = $("#music_url").val();
+            myCustom.PrevView(custom_pattern,music_url);
+        }
+	}else{
+		downPlay();
+	}
+}
+
+function downPlay(){
+    if($("#music_url").val()){
+        $(".muopenAudio")[0].pause();
+    }
+
+    if($("#downUrl").attr("pre_url")){
+        var downUrl = $("#downUrl").attr("pre_url");
+    }else {
+        var downUrl = $("#downUrl").val();
+    }
+    if($("#vidUrl").attr("pre_url")){
+        var videoUrl = $("#vidUrl").attr("pre_url");
+    }else {
+        var videoUrl = $("#vidUrl").val();
+    }
+	var videoCont = $("#videoCont").val();
+
+    $(".customShakeContent").hide();
+	if(openBody.two){
+		$("#myDown").show();
+		myPlayVideo(downUrl);
+		$("#myDowns")[0].addEventListener("ended",function(){
+			if(openBody.three){
+				$("#myDown").hide();
+				$(".myOpenVideo").show();
+				myGetDate(videoCont,videoUrl);
+			}
+		 });
+	}else if(openBody.three){
+		$(".myOpenVideo").show();
+		myGetDate(videoCont,videoUrl);
+	}
+}
+
+var myt="";
+var mytt="";
+var myttwo="";
+var mytimr="";
+var mytimrTwo="";
+/*********第一个摇一摇js开始******/
+var myi=0;
+var myWidth=340;
+function myShakeAdd(myi){
+	$(".MyMove").css("width",myi);
+	var bai = Math.round(myi*100 / myWidth);
+	$(".MyBai").html(bai+"%");
+}
+function MyMove(music_url){
+    if(music_url) {
+        $(".muopenAudio").attr("src", music_url);
+        $(".muopenAudio")[0].load();
+        $(".muopenAudio")[0].play();
+    }
+	if(myi>myWidth){
+		$(".myShakeYao").hide();
+		downPlay();
+		return myi=0;
+	}
+	if(myi/myWidth<=1){
+		myt = setTimeout("MyMove()",10)
+		myShakeAdd(myi);
+	    myi++;
+		}
+}
+/*********第一个摇一摇js结束******/
+
+/*********第二个摇一摇js开始******/
+function MyclickMove(){
+    if(myCustom.myRadioType == "0"){
+    	var width = $("#mySpanText").width();
+    	$(".myZheNo").css("width",width);
+    	myCustom.ywidth = width;
+    	var bai = $(".myWbai").html();
+    	if(bai== "100%" || bai== ""){
+    		MymoveW($("#music_url").val());
+    	}
+    }else{
+    	var bai = $(".myBaiImg").html();
+    	if(bai== "100%" || bai== ""){
+    		$(".myZheImg").css("width","300px");
+    		myMoveimg($("#music_url").val());
+    	}
+    }
+}
+var myx=0;
+function myAddWno(x){
+	$(".myZheNo").css("width",myCustom.ywidth-myx);
+	var myxxx = (450-myCustom.ywidth)/2 + myx;
+	$(".myZheNo").css("left",myxxx);
+	var bai = Math.round(x*100 / myCustom.ywidth);
+	$(".myWbai").html(bai+"%");
+}
+function MymoveW(music_url){
+    if(music_url) {
+        $(".muopenAudio").attr("src", music_url);
+        $(".muopenAudio")[0].load();
+        $(".muopenAudio")[0].play();
+    }
+	if(myx>myCustom.ywidth){
+		$(".myZheNo").css("left","");
+		$(".myWshake").hide();
+		downPlay();
+		return myx=0;
+	}
+	if(myx/myCustom.ywidth<=1){
+		mytt = setTimeout("MymoveW()",10)
+		myAddWno(myx);
+		myx++;
+		}
+}
+
+var myj=0;
+function myAddImg(j){
+	$(".myZheImg").css("width",300-myj);
+	$(".myZheImg").css("left",myj);
+	var bai = Math.round(myj*100 / 300);
+	$(".myBaiImg").html(bai+"%");
+}
+function myMoveimg(music_url){
+    if(music_url) {
+        $(".muopenAudio").attr("src", music_url);
+        $(".muopenAudio")[0].load();
+        $(".muopenAudio")[0].play();
+    }
+	if(myj>300){
+		$(".myZheImg").css("left","");
+		$(".myWshake").hide();
+		downPlay();
+		return j=0;
+	}
+	if(myj/300<=1){
+		timr = setTimeout("myMoveimg()",10)
+		myAddImg(myj);
+	    myj++;
+		}
+}
+
+/*********第二个摇一摇js结束******/
+
+/*********第三个摇一摇js开始******/
+function MyclickMoveTwo(){
+	if(myCustom.myTwoType == "0"){
+		var bai = $(".myTwoBai").html();
+		if(bai== "100%" || bai== ""){
+			myMoveTwo($("#music_url").val());
+		}
+	}else{
+		var bai = $(".myBaiTwoImg").html();
+		if(bai== "100%" || bai== ""){
+			$(".myZheImg").css("width","300px");
+			myMoveTwoimg($("#music_url").val());
+		}
+	}
+}
+
+
+var mytx=0;
+function myAddWnoTwo(mytx){
+	$("#myTwoSpan").css("opacity",mytx/100);
+	var bai = Math.round(mytx*100 / 100);
+	$(".myTwoBai").html(bai+"%");
+}
+function myMoveTwo(music_url){
+    if(music_url) {
+        $(".muopenAudio").attr("src", music_url);
+        $(".muopenAudio")[0].load();
+        $(".muopenAudio")[0].play();
+    }
+	if(mytx>100){
+		$(".myTwoshake").hide();
+		downPlay();
+		return mytx=0;
+	}
+	if(mytx/100<=1){
+		myttwo = setTimeout("myMoveTwo()",10)
+		myAddWnoTwo(mytx);
+		mytx++;
+		}
+}
+
+var mym=0;
+function myAddTwo(mym){
+	$(".myTwoLogo").css("opacity",mym/100);
+	var bai = Math.round(mym*100 / 100);
+	$(".myBaiTwoImg").html(bai+"%");
+}
+function myMoveTwoimg(music_url){
+    if(music_url) {
+        $(".muopenAudio").attr("src", music_url);
+        $(".muopenAudio")[0].load();
+        $(".muopenAudio")[0].play();
+    }
+	if(mym>100){
+		$(".myTwoshake").hide();
+		downPlay();
+		return m=0;
+	}
+	if(mym/100<=1){
+		mytimrTwo = setTimeout("myMoveTwoimg()",10)
+		myAddTwo(mym);
+	    mym++;
+		}
+}
+/*********第三个摇一摇js结束******/
+
+/*********倒计时js开始******/
+function myPlayVideo(src){
+   $("#myDown").show();
+//	var srcArr =  src.split('.');
+//	var ds = srcArr[srcArr.length - 2] + "_preview";
+//	srcArr.splice(srcArr.length - 2,1,ds);
+//	var src2 = srcArr.join('.');
+   $(".downVideo").attr("src",src);
+//	ProxyLoad3({
+//		url: 'http://localhost:3000',
+//	});
+}
+/*********倒计时js结束******/
+var mytimer = "";
+var myTimeArr = new Array();
+var myContArr = new Array();
+function myGetDate(content,videoUrl){
+	clearInterval(mytimer);
+	$("#myEffect").html("");
+//	var srcArr =  videoUrl.split('.');
+//	var srcArray = [
+//		'com/default/openceremony/video/start_1',
+//		'com/default/openceremony/video/start_2',
+//		'com/default/openceremony/video/start_3',
+//		'com/default/openceremony/video/start_4',
+//		'com/default/openceremony/video/start_5',
+//	];
+//	var iscun = $.inArray(srcArr[srcArr.length - 2],srcArray);
+//	if(iscun >= 0){
+//		var ds = srcArr[srcArr.length - 2] + "_preview";
+//		srcArr.splice(srcArr.length - 2,1,ds);
+//		var src2 = srcArr.join('.');
+//	}else {
+//		var src2 = videoUrl;
+//	}
+	$("#myVideoOpen").attr("src",videoUrl);
+//	ProxyLoad4({
+//		url: 'http://localhost:3000',
+//	});
+	if(content != ""){
+		var contents = content.split("|");
+		for(var i=0;i<contents.length;i++){
+			var cont = JSON.parse(contents[i]);
+			myContArr[cont.time] = cont;
+			myTimeArr.push(cont.time);
+		};
+		$("#myVideoOpen")[0].addEventListener("ended",function(){
+			 $("#myEffect").html("");
+			 clearInterval(mytimer);
+		 });
+
+		 mytimer = setInterval(myVidwoPlay,100,myTimeArr,myContArr);
+	}else{
+		$("#myEffect").html("");
+		$("#myVideoOpen")[0].addEventListener("ended",function(){
+			 $("#myEffect").html("");
+		 });
+	}
+}
+
+/*********实现播放时候添加文字的效果******/
+function myVidwoPlay(myTimeArr,myContArr){
+	var current = $("#myVideoOpen")[0].currentTime.toFixed(1);
+	for(var x=0;x<myTimeArr.length;x++){
+		if(current == myTimeArr[x] ){
+			var cont = myContArr[myTimeArr[x]];
+			var p = "<p class='animated "+cont.animal+"' style='"+cont.contxt+"'>"+cont.text+"</p>";
+			$("#myEffect").html(p);
+			if($("#myEffect>p").html()){
+				$("#myEffect>p").css("font-size",cont.fontSize*0.8+"px");
+				var tr = setInterval(function () {
+					$("#myEffect>p").removeClass(cont.animal);
+					var aclass = cont.animal+"MyOut";
+					$("#myEffect>p").addClass(aclass);
+					clearInterval(tr);
+				},2000);
+			}
+		}
+	}
+
+}
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+	<meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+	<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+	<meta content="no-cache" http-equiv="pragma">
+	<meta content="0" http-equiv="expires">
+	<meta content="telephone=no, address=no" name="format-detection">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta charset="utf-8">
+	<link rel="shortcut icon" href="/img/open.png">
+	<title>手机控制器</title>
+	<script type="text/javascript" src="/js/common/jquery-2.1.4.min.js"></script>
+</head>
+<style>
+#button{margin-top: 11%;text-align: center;width: 80%;margin-left: 10%;}
+.btn-class{color: #fff;background: #D3D3D3;cursor: no-drop; display: block;width: 160px;margin: 18px auto;border-radius: 80px;border: 1px solid #D3D3D3;height: 50px;font-size: 20px;outline: none;}
+.btn-grp{color: #ff4343;background: #ffffff;cursor: pointer;  }
+.clk-class{background:#ff4343;!important;color:#ffffff;!important;}
+.btn-grp:hover{background:#ff4343;color:#ffffff;}
+</style>
+<div class='middle'>
+	<div id="button"  >
+		<button type="button" class="btn-class  btn-grp" id="start" disabled="disabled">启动</button>
+	</div>
+</div>
+<input type="hidden" id="display_server" value="<?php echo $data['display_server']?>">
+<input type="hidden" id="compId" value="<?php echo $data['comp_id']?>">
+<input type="hidden" id="meetId" value="<?php echo $data['meet_id']?>">
+<input type="hidden" id="sequence" value="<?php echo $data['sequence']?>">
+<input type="hidden" id="url_wslist" value="<?php echo $data['websocket_list']?>">
+<script src="/js/ws/PlumeWS.js"></script>
+<script src="/js/ws/openEvent.js"></script>
+<script src="/js/ws/controlWs.js"></script>
